@@ -28,7 +28,7 @@ The scope has now been expanded to include a second workstream: **benchmark test
 
 These skills are more focused, task-oriented, and reusable capabilities that support specific workflows in clinical data science. The first skill in this effort is [**group sequential design (GSD)**](https://github.com/RConsortium/pharma_skills/tree/main).
 
-This expansion is being developed in collaboration with [**BBSW**](www.bbsw.org), which is supporting the work by sponsoring shared tokens for the automated evaluation pipeline.
+This expansion is being developed in collaboration with [**BBSW**](https://www.bbsw.org/), which is supporting the work by sponsoring shared tokens for the automated evaluation pipeline.
 
 ## Current Activities Overview
 The project now includes two complementary parts:
@@ -42,13 +42,12 @@ Together, these efforts aim to build a stronger public foundation for rigorous, 
 
 Pilot 7 holds weekly standups three times a month on Fridays from 8-9 AM PST. We also host monthly Submissions Working Group meetings with FDA staff, bringing together participants across different pilot subgroups.
 
-[Pilot 7 Meeting minutes](https://github.com/RConsortium/submissions-pilot7-synthetic-data/wiki/Meeting-Minutes)
+[Pilot 7 meeting minutes](https://github.com/RConsortium/submissions-pilot7-synthetic-data/wiki/Meeting-Minutes)
 
-Everyone is welcome to join. To access our calendar and join the Slack workspace, please see 
-[here](https://rconsortium.github.io/submissions-wg/join.html)
+Everyone is welcome to join. Visit the [Submissions Working Group's join page](https://rconsortium.github.io/submissions-wg/join.html) to access our calendar and join the Slack workspace.
 
 
-To learn more about the R consortium Submissions Working Group, visit [here](https://rconsortium.github.io/submissions-wg/)
+To learn more, visit the [R Consortium Submissions Working Group website](https://rconsortium.github.io/submissions-wg/).
 
 
 ## Synthetic Trial Data
@@ -99,8 +98,6 @@ python3 .github/scripts/check_structure.py
 | `.archieve/`          | Earlier studies, retained for reference                         |
 
 ## Reference: CDISC Pilot 1 data
-- Original sdtm: [json version](https://github.com/RConsortium/submissions-pilot6-adams-tlfs/tree/main/data/sdtm)
-- Original xpt versions: see pilot 5 [repo](https://github.com/RConsortium/submissions-pilot5-datasetjson) 
+- Original SDTM: [JSON version](https://github.com/RConsortium/submissions-pilot6-adams-tlfs/tree/main/data/sdtm)
+- Original XPT versions: see the [Pilot 5 repository](https://github.com/RConsortium/submissions-pilot5-datasetjson)
 - CSR: [https://github.com/cdisc-org/sdtm-adam-pilot-project/blob/master/updated-pilot-submission-package/900172/m5/53-clin-stud-rep/535-rep-effic-safety-stud/5351-stud-rep-contr/cdiscpilot01/cdiscpilot01.pdf](https://github.com/cdisc-org/sdtm-adam-pilot-project/blob/master/updated-pilot-submission-package/900172/m5/53-clin-stud-rep/535-rep-effic-safety-stud/5351-stud-rep-contr/cdiscpilot01/cdiscpilot01.pdf)
-
-
