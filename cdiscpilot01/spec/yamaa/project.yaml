@@ -1,0 +1,4 @@
+schema_version: "1.0"
+adam:
+  specs: [adsl.yaml, adae.yaml, adtte.yaml, advs.yaml, adlbc.yaml,
+    adlbh.yaml, adlbhy.yaml, adqsnipx.yaml, adqsadas.yaml, adqscibc.yaml]

@@ -1,0 +1,13 @@
+resource,availability,evidence_or_limit
+SDTM,available,22 frozen Parquet files; counts and columns in dataset inventory
+ADaM references,available,10 frozen Parquet files; all targets retained in denominator
+existing specifications,partial at intake,8 active YAML; 2 missing; 7 of 8 failed initial R 0.5.0 static check
+define metadata,available with conflicts,original SDTM and ADaM define.xml unchanged; see source discrepancies
+SAP/CSR,available public,CDISC CSR Appendix 9 SAP; upstream ref 667511d4b183871d74392ba691c935c38d431d39
+original SAS,partial,public ADAE source only for these target datasets; setup include unavailable; no SAS runtime/license
+original R,unavailable,no independent original R derivation programs found
+historical yamaa specs,available,Pilot 7 ref 086abc2c5ea526b0bce477ea7633932af3ca02cd; used for missing questionnaire targets
+R yamaa 0.5.0,available and compiled,released source archive; fresh R 4.5.3 installation; no Python yamaa execution
+comparison readers,available,R Arrow 25.0.0; yaml 2.3.12; jsonlite 2.0.0
+AI token and billing records,unavailable,session interface provides no per-job usage or invoice telemetry; not reported as zero
+human reviewer,pending,independent programmer review and source conflict adjudication not yet performed

@@ -1,0 +1,12 @@
+{
+  "attempt": "20261020T203332.365111",
+  "status": "success",
+  "started_utc": "2026-10-20T20:33:32.365111Z",
+  "ended_utc": "2026-10-20T20:33:55.198904Z",
+  "started_epoch": 1792528412.3651,
+  "elapsed_seconds": 22.8338,
+  "r_version": "4.5.3",
+  "yamaa_version": "0.5.0",
+  "output_count": 10,
+  "validation_issues": 0
+}

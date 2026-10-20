@@ -1,0 +1,11 @@
+"candidate","bytes","byte_identical"
+"data/adam/adae-yamaa.parquet",567599,TRUE
+"data/adam/adlbc-yamaa.parquet",29339542,TRUE
+"data/adam/adlbh-yamaa.parquet",19663555,TRUE
+"data/adam/adlbhy-yamaa.parquet",3542725,TRUE
+"data/adam/adqsadas-yamaa.parquet",4146371,TRUE
+"data/adam/adqscibc-yamaa.parquet",222081,TRUE
+"data/adam/adqsnipx-yamaa.parquet",11420799,TRUE
+"data/adam/adsl-yamaa.parquet",113438,TRUE
+"data/adam/adtte-yamaa.parquet",71329,TRUE
+"data/adam/advs-yamaa.parquet",10672885,TRUE

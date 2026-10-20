@@ -7,10 +7,12 @@ input:
     empty_string: present
   ADSL:
     path: ../../data/adam/adsl-yamaa.parquet
+    schema: adsl.yaml
     empty_string: present
 base: AE
 
 output:
+  report: ../../log/yamaa-adae-report.csv
   path: ../../data/adam/adae-yamaa.parquet
   columns: [STUDYID, SITEID, USUBJID, TRTA, TRTAN, AGE, AGEGR1, AGEGR1N, RACE,
     RACEN, SEX, SAFFL, TRTSDT, TRTEDT, ASTDT, ASTDTF, ASTDY, AENDT, AENDY,
@@ -106,12 +108,12 @@ columns:
       case:
         - when: "AE.AESTDTC LIKE '%-%'"
           then:
-            date_impute:
+            impute:
+              type: date
               source: AE.AESTDTC
               month: 1
               day: 1
-              missing: null
-              invalid: null
+              invalid: {literal: null}
         - otherwise: {literal: null}
 
   - name: ASTDTF
@@ -130,13 +132,15 @@ columns:
       case:
         - when: "ASTDT >= TRTSDT"
           then:
-            date_diff:
+            diff:
+              type: date
               start: TRTSDT
               end: ASTDT
               unit: day
               bounds: inclusive
         - otherwise:
-            date_diff:
+            diff:
+              type: date
               start: TRTSDT
               end: ASTDT
               unit: day
@@ -151,12 +155,12 @@ columns:
     type: date
     label: Analysis End Date
     derivation:
-      date_impute:
+      impute:
+        type: date
         source: AE.AEENDTC
         month: 1
         day: 1
-        missing: null
-        invalid: null
+        invalid: {literal: null}
 
   - name: AENDY
     type: float
@@ -170,7 +174,8 @@ columns:
       case:
         - when: "ASTDT IS NOT NULL AND AENDT IS NOT NULL AND ASTDTF = ''"
           then:
-            date_diff:
+            diff:
+              type: date
               start: ASTDT
               end: AENDT
               unit: day
@@ -480,3 +485,12 @@ rows:
   - id: all-aes
     dataset: AE
     derivations: {}
+
+verifications:
+  - row_count:
+      id: nonempty-analysis
+      min: 1
+  - assert:
+      id: treatment-date-order
+      when: TRTSDT IS NOT NULL AND TRTEDT IS NOT NULL
+      require: TRTSDT <= TRTEDT

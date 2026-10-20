@@ -1,0 +1,16 @@
+
+Attaching package: ‘arrow’
+
+The following object is masked from ‘package:utils’:
+
+    timestamp
+
+             case passed exit_status
+ positive-control   TRUE           0
+         one-cell   TRUE           1
+   missing-output   TRUE           1
+    duplicate-key   TRUE           1
+   failed-attempt   TRUE           1
+     stale-output   TRUE           1
+     extra-output   TRUE           1
+      edited-spec   TRUE           1

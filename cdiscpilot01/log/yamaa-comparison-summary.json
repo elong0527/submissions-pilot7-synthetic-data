@@ -1,0 +1,15 @@
+{
+  "attempt": "20261020T203332.365111",
+  "datasets_in_scope": 10,
+  "datasets_fully_matching": 0,
+  "datasets_exact_data_matching": 10,
+  "datasets_blocked": 0,
+  "exact_matching_cells": 9119605,
+  "total_reference_cells": 9119605,
+  "tolerance_only_cells": 0,
+  "outside_tolerance_numeric_cells": 0,
+  "max_absolute_numeric_difference": 0,
+  "extra_cells": 0,
+  "serialized_label_differences": 415,
+  "comparison_seconds": 10.6363
+}

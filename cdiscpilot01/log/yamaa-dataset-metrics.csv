@@ -1,0 +1,11 @@
+"dataset","status","reference_rows","generated_rows","reference_columns","generated_columns","matched_columns","exact_data_columns","exact_cells","total_cells","tolerance_only_cells","outside_tolerance_cells","max_absolute_numeric_difference","extra_cells","missing_rows","extra_rows","missing_columns","extra_columns","logical_type_differences","spec_label_differences","serialized_label_differences","required_order_matches","exact_data_match","dataset_fully_matches","comparison_seconds"
+"ADAE","mismatched",1191,1191,55,55,0,55,65505,65505,0,0,0,0,0,0,0,0,0,0,55,TRUE,TRUE,FALSE,1.47080898284912
+"ADLBC","mismatched",74264,74264,46,46,0,46,3416144,3416144,0,0,0,0,0,0,0,0,0,0,46,TRUE,TRUE,FALSE,2.19475436210632
+"ADLBH","mismatched",49932,49932,46,46,0,46,2296872,2296872,0,0,0,0,0,0,0,0,0,0,46,TRUE,TRUE,FALSE,1.74722146987915
+"ADLBHY","mismatched",9954,9954,43,43,0,43,428022,428022,0,0,0,0,0,0,0,0,0,0,43,TRUE,TRUE,FALSE,0.740689277648926
+"ADQSADAS","mismatched",12463,12463,40,40,0,40,498520,498520,0,0,0,0,0,0,0,0,0,0,40,TRUE,TRUE,FALSE,0.725597143173218
+"ADQSCIBC","mismatched",730,730,36,36,0,36,26280,26280,0,0,0,0,0,0,0,0,0,0,36,TRUE,TRUE,FALSE,0.466305494308472
+"ADQSNPIX","mismatched",31140,31140,41,41,0,41,1276740,1276740,0,0,0,0,0,0,0,0,0,0,41,TRUE,TRUE,FALSE,1.05361890792847
+"ADSL","mismatched",254,254,48,48,0,48,12192,12192,0,0,0,0,0,0,0,0,0,0,48,TRUE,TRUE,FALSE,0.85391902923584
+"ADTTE","mismatched",254,254,26,26,0,26,6604,6604,0,0,0,0,0,0,0,0,0,0,26,TRUE,TRUE,FALSE,0.28156566619873
+"ADVS","mismatched",32139,32139,34,34,0,34,1092726,1092726,0,0,0,0,0,0,0,0,0,0,34,TRUE,TRUE,FALSE,0.891588449478149

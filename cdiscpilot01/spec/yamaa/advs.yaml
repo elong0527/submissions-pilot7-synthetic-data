@@ -7,10 +7,12 @@ input:
     empty_string: present
   ADSL:
     path: ../../data/adam/adsl-yamaa.parquet
+    schema: adsl.yaml
     empty_string: present
 base: VS
 
 output:
+  report: ../../log/yamaa-advs-report.csv
   path: ../../data/adam/advs-yamaa.parquet
   columns: [STUDYID, SITEID, USUBJID, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX,
     SAFFL, TRTSDT, TRTEDT, TRTP, TRTPN, TRTA, TRTAN, PARAMCD, PARAM, PARAMN,
@@ -29,7 +31,7 @@ intermediates:
     dataset: VS
     key: {USUBJID: USUBJID, VSTESTCD: PARAMCD, VSTPT: ATPT}
     filter: "VS.VISIT = 'BASELINE'"
-    no_match: null
+    no_match: {literal: null}
 
 columns:
   - name: STUDYID
@@ -149,12 +151,12 @@ columns:
     type: date
     label: Analysis Date
     derivation:
-      date_impute:
+      impute:
+        type: date
         source: VS.VSDTC
         month: 1
         day: 1
-        missing: null
-        invalid: null
+        invalid: {literal: null}
 
   - name: ADY
     type: float
@@ -304,8 +306,8 @@ rows:
             WEEK 20: 20.0
             WEEK 24: 24.0
             WEEK 26: 26.0
-          missing: null
-          unmapped: null
+          missing: {literal: null}
+          unmapped: {literal: null}
       _AVISIT_OUT: _SRC_AVISIT
       _AVISITN_OUT: _SRC_AVISITN
       _USUBJID: {literal: null}
@@ -352,8 +354,8 @@ rows:
             WEEK 20: 20.0
             WEEK 24: 24.0
             WEEK 26: 26.0
-          missing: null
-          unmapped: null
+          missing: {literal: null}
+          unmapped: {literal: null}
       _AVISIT_OUT: {literal: 'End of Treatment'}
       _AVISITN_OUT: {literal: 99.0}
       _RANK:
@@ -362,3 +364,12 @@ rows:
             group_by: [_USUBJID, _VSTESTCD, _VSTPT]
             order_by: [{variable: _SRC_AVISITN, direction: desc}]
             filter: "_SRC_AVISITN IS NOT NULL"
+
+verifications:
+  - row_count:
+      id: nonempty-analysis
+      min: 1
+  - assert:
+      id: treatment-date-order
+      when: TRTSDT IS NOT NULL AND TRTEDT IS NOT NULL
+      require: TRTSDT <= TRTEDT

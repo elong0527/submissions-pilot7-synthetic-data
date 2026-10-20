@@ -1,0 +1,25 @@
+   USUBJID QSSEQ AVISITN AVAL ANL01FL DTYPE
+1   TEST-A     1       0   10       Y
+2   TEST-A     2       8   12       Y
+3   TEST-A     3       8   12          LOCF
+4   TEST-A     4       8   12          LOCF
+5   TEST-A     5      16   20       Y
+6   TEST-A     5      24   20       Y  LOCF
+7   TEST-B    99       0    0       Y
+8   TEST-B   100       8    6          LOCF
+9   TEST-B   101       8    6       Y
+10  TEST-B   100      16    6       Y  LOCF
+11  TEST-B   100      24    6       Y  LOCF
+   USUBJID QSSEQ AVISITN AVAL ANL01FL DTYPE
+1   TEST-A     1       0   10       Y
+2   TEST-A     2       8   12       Y
+3   TEST-A     3       8   12          LOCF
+4   TEST-A     4       8   12          LOCF
+5   TEST-A     5      16   20       Y
+6   TEST-A     5      24   20       Y  LOCF
+7   TEST-B    99       0    0       Y
+9   TEST-B   100       8    6          LOCF
+8   TEST-B   101       8    6       Y
+10  TEST-B   100      16    6       Y  LOCF
+11  TEST-B   100      24    6       Y  LOCF
+PASS: invented ADAS/CIBC rank, tie, window boundary, LOCF donor/value, missing score, zero baseline, invalid date, exact arithmetic, and missing serialized label cases.

@@ -1,0 +1,77 @@
+
+adae.yaml: 5 issue(s)
+         condition                                              context
+ unknown_operation {"operation":"date_impute","registry":"expressions"}
+ unknown_operation   {"operation":"date_diff","registry":"expressions"}
+
+adlbc.yaml: 16 issue(s)
+           condition
+ redundant_long_form
+ redundant_long_form
+ redundant_long_form
+ redundant_long_form
+ redundant_long_form
+   unknown_operation
+   unknown_operation
+   unknown_operation
+                                                       context
+                   {"field":"variable","shorthand":"LB.LBDTC"}
+                   {"field":"variable","shorthand":"LB.LBSEQ"}
+              {"field":"variable","shorthand":"_RANK_AVISITN"}
+                  {"field":"variable","shorthand":"_ADT_DATE"}
+                      {"field":"variable","shorthand":"LBSEQ"}
+           {"operation":"str_concat","registry":"expressions"}
+      {"operation":"datetime_impute","registry":"expressions"}
+ {"operation":"previous_non_missing","registry":"expressions"}
+
+adlbh.yaml: 17 issue(s)
+           condition
+ redundant_long_form
+ redundant_long_form
+ redundant_long_form
+   unknown_operation
+ redundant_long_form
+ redundant_long_form
+ redundant_long_form
+   unknown_operation
+   unknown_operation
+                                                       context
+                   {"field":"variable","shorthand":"_AVISITN"}
+                   {"field":"variable","shorthand":"LB.LBDTC"}
+                   {"field":"variable","shorthand":"LB.LBSEQ"}
+           {"operation":"str_concat","registry":"expressions"}
+              {"field":"variable","shorthand":"_RANK_AVISITN"}
+                  {"field":"variable","shorthand":"_ADT_DATE"}
+                      {"field":"variable","shorthand":"LBSEQ"}
+      {"operation":"datetime_impute","registry":"expressions"}
+ {"operation":"previous_non_missing","registry":"expressions"}
+
+adlbhy.yaml: 0 issue(s)
+
+adqsnipx.yaml: 7 issue(s)
+           condition                                              context
+ redundant_long_form             {"field":"variable","shorthand":"_DIFF"}
+ redundant_long_form           {"field":"variable","shorthand":"QS.QSDY"}
+ redundant_long_form             {"field":"variable","shorthand":"QSSEQ"}
+   unknown_operation {"operation":"date_impute","registry":"expressions"}
+ redundant_long_form       {"field":"expr","shorthand":"MIN(QS.USUBJID)"}
+
+adsl.yaml: 15 issue(s)
+           condition
+ redundant_long_form
+   unknown_operation
+   unknown_operation
+ redundant_long_form
+                                                                     context
+                              {"field":"expr","shorthand":"MIN(EX.EXSTDTC)"}
+                        {"operation":"date_impute","registry":"expressions"}
+                          {"operation":"date_diff","registry":"expressions"}
+ {"field":"expr","shorthand":"SUM(EX.EXDOSE * (EX.EXENDY - EX.EXSTDY + 1))"}
+
+adtte.yaml: 1 issue(s)
+         condition                                            context
+ unknown_operation {"operation":"date_diff","registry":"expressions"}
+
+advs.yaml: 1 issue(s)
+         condition                                              context
+ unknown_operation {"operation":"date_impute","registry":"expressions"}

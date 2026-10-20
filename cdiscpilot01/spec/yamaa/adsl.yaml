@@ -30,6 +30,7 @@ input:
 base: DM
 
 output:
+  report: ../../log/yamaa-adsl-report.csv
   path: ../../data/adam/adsl-yamaa.parquet
   columns: [STUDYID, USUBJID, SUBJID, SITEID, SITEGR1, ARM, TRT01P, TRT01PN,
     TRT01A, TRT01AN, TRTSDT, TRTEDT, TRTDUR, AVGDD, CUMDOSE, AGE, AGEGR1,
@@ -46,7 +47,7 @@ intermediates:
     filter: "VS.VSTESTCD = 'HEIGHT'"
     order_by: [VS.VISITNUM]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: BASE_WT
     dataset: VS
@@ -54,14 +55,14 @@ intermediates:
     filter: "VS.VSTESTCD = 'WEIGHT' AND VS.VSBLFL = 'Y'"
     order_by: [VS.VISITNUM]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: LAST_EX
     dataset: EX
     key: [STUDYID, USUBJID]
     order_by: [EX.EXSEQ]
     keep: last
-    no_match: null
+    no_match: {literal: null}
 
   - id: SV1
     dataset: SV
@@ -69,7 +70,7 @@ intermediates:
     filter: "SV.VISITNUM = 1"
     order_by: [SV.VISITNUM]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: SV8
     dataset: SV
@@ -77,7 +78,7 @@ intermediates:
     filter: "SV.VISITNUM = 8"
     order_by: [SV.VISITNUM]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: SV10
     dataset: SV
@@ -85,7 +86,7 @@ intermediates:
     filter: "SV.VISITNUM = 10"
     order_by: [SV.VISITNUM]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: SV12
     dataset: SV
@@ -93,7 +94,7 @@ intermediates:
     filter: "SV.VISITNUM = 12"
     order_by: [SV.VISITNUM]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: DS_DISP
     dataset: DS
@@ -101,7 +102,7 @@ intermediates:
     filter: "DS.DSCAT = 'DISPOSITION EVENT'"
     order_by: [DS.DSSEQ]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: SC_EDU
     dataset: SC
@@ -109,7 +110,7 @@ intermediates:
     filter: "SC.SCTESTCD = 'EDLEVEL'"
     order_by: [SC.SCSEQ]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: MH_DX
     dataset: MH
@@ -117,7 +118,7 @@ intermediates:
     filter: "MH.MHCAT = 'PRIMARY DIAGNOSIS'"
     order_by: [MH.MHSEQ]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: QS_ADAS
     dataset: QS
@@ -126,7 +127,7 @@ intermediates:
       AND QS.VISITNUM > 3"
     order_by: [QS.VISITNUM]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: QS_CIBIC
     dataset: QS
@@ -136,13 +137,13 @@ intermediates:
       AND QS.VISITNUM > 3"
     order_by: [QS.VISITNUM]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: QS_MMSE
     dataset: QS
     key: [STUDYID, USUBJID]
     filter: "QS.QSCAT = 'MINI-MENTAL STATE'"
-    no_match: null
+    no_match: {literal: null}
 
 columns:
   - name: STUDYID
@@ -215,19 +216,18 @@ columns:
     type: str
     label: Earliest Exposure Start (character)
     derivation:
-      aggregate:
-        expr: "MIN(EX.EXSTDTC)"
+      aggregate: "MIN(EX.EXSTDTC)"
 
   - name: TRTSDT
     type: date
     label: Date of First Exposure to Treatment
     derivation:
-      date_impute:
+      impute:
+        type: date
         source: EX_MINDTC
         month: 1
         day: 1
-        missing: null
-        invalid: null
+        invalid: {literal: null}
 
   - name: LAST_EXENDTC
     type: str
@@ -241,25 +241,26 @@ columns:
       case:
         - when: "LAST_EXENDTC IS NULL OR LAST_EXENDTC = ''"
           then:
-            date_impute:
+            impute:
+              type: date
               source: DS_DISP.DSSTDTC
               month: 1
               day: 1
-              missing: null
-              invalid: null
+              invalid: {literal: null}
         - otherwise:
-            date_impute:
+            impute:
+              type: date
               source: LAST_EXENDTC
               month: 1
               day: 1
-              missing: null
-              invalid: null
+              invalid: {literal: null}
 
   - name: TRTDUR
     type: float
     label: Duration of Treatment (days)
     derivation:
-      date_diff:
+      diff:
+        type: date
         start: TRTSDT
         end: TRTEDT
         unit: day
@@ -269,8 +270,7 @@ columns:
     type: float
     label: Cumulative dose from complete EX records
     derivation:
-      aggregate:
-        expr: "SUM(EX.EXDOSE * (EX.EXENDY - EX.EXSTDY + 1))"
+      aggregate: "SUM(EX.EXDOSE * (EX.EXENDY - EX.EXSTDY + 1))"
 
   - name: LAST_EXSTDTC
     type: str
@@ -281,12 +281,12 @@ columns:
     type: date
     label: Last Exposure Start (date)
     derivation:
-      date_impute:
+      impute:
+        type: date
         source: LAST_EXSTDTC
         month: 1
         day: 1
-        missing: null
-        invalid: null
+        invalid: {literal: null}
 
   - name: LAST_EX_DOSE
     type: float
@@ -300,20 +300,47 @@ columns:
       case:
         - when: "LAST_EXENDTC IS NULL OR LAST_EXENDTC = ''"
           then:
-            date_diff:
+            diff:
+              type: date
               start: LAST_EXSTDTC_DT
               end: TRTEDT
               unit: day
               bounds: inclusive
         - otherwise: {literal: 0}
 
+  - name: _CD_BASE
+    type: float
+    label: CUMDOSE_BASE with missing replaced by zero
+    derivation:
+      case:
+        - when: "CUMDOSE_BASE IS NULL"
+          then: {literal: 0}
+        - otherwise: CUMDOSE_BASE
+
+  - name: _CD_DOSE
+    type: float
+    label: LAST_EX_DOSE with missing replaced by zero
+    derivation:
+      case:
+        - when: "LAST_EX_DOSE IS NULL"
+          then: {literal: 0}
+        - otherwise: LAST_EX_DOSE
+
+  - name: _CD_DAYS
+    type: float
+    label: LAST_EX_DAYS with missing replaced by zero
+    derivation:
+      case:
+        - when: "LAST_EX_DAYS IS NULL"
+          then: {literal: 0}
+        - otherwise: LAST_EX_DAYS
+
   - name: CUMDOSE
     type: float
     label: Cumulative Dose (as planned)
     derivation:
       compute:
-        expr: "COALESCE(CUMDOSE_BASE, 0) + COALESCE(LAST_EX_DOSE,
-          0) * COALESCE(LAST_EX_DAYS, 0)"
+        expr: "_CD_BASE + _CD_DOSE * _CD_DAYS"
 
   - name: AVGDD_RAW
     type: float
@@ -424,12 +451,12 @@ columns:
     type: date
     label: Visit 8 date
     derivation:
-      date_impute:
+      impute:
+        type: date
         source: SV8_DTC
         month: 1
         day: 1
-        missing: null
-        invalid: null
+        invalid: {literal: null}
 
   - name: RFSTDTC
     type: str
@@ -445,12 +472,12 @@ columns:
     type: date
     label: Date of Discontinuation/Completion
     derivation:
-      date_impute:
+      impute:
+        type: date
         source: RFENDTC
         month: 1
         day: 1
-        missing: null
-        invalid: null
+        invalid: {literal: null}
 
   - name: COMP8FL
     type: str
@@ -470,12 +497,12 @@ columns:
     type: date
     label: Visit 10 date
     derivation:
-      date_impute:
+      impute:
+        type: date
         source: SV10_DTC
         month: 1
         day: 1
-        missing: null
-        invalid: null
+        invalid: {literal: null}
 
   - name: COMP16FL
     type: str
@@ -495,12 +522,12 @@ columns:
     type: date
     label: Visit 12 date
     derivation:
-      date_impute:
+      impute:
+        type: date
         source: SV12_DTC
         month: 1
         day: 1
-        missing: null
-        invalid: null
+        invalid: {literal: null}
 
   - name: COMP24FL
     type: str
@@ -625,12 +652,12 @@ columns:
     type: date
     label: Date of Onset of Disease
     derivation:
-      date_impute:
+      impute:
+        type: date
         source: MH_DTC
         month: 1
         day: 1
-        missing: null
-        invalid: null
+        invalid: {literal: null}
 
   - name: SV1_DTC
     type: str
@@ -641,18 +668,19 @@ columns:
     type: date
     label: Date of Visit 1
     derivation:
-      date_impute:
+      impute:
+        type: date
         source: SV1_DTC
         month: 1
         day: 1
-        missing: null
-        invalid: null
+        invalid: {literal: null}
 
   - name: DURDIS_DAYS
     type: float
     label: Disease duration days +1
     derivation:
-      date_diff:
+      diff:
+        type: date
         start: DISONSDT
         end: VISIT1DT
         unit: day
@@ -702,3 +730,16 @@ rows:
     dataset: DM
     filter: "DM.ACTARM <> 'Screen Failure'"
     derivations: {}
+
+verifications:
+  - row_count:
+      id: nonempty-analysis
+      min: 1
+  - assert:
+      id: treatment-date-order
+      when: TRTSDT IS NOT NULL AND TRTEDT IS NOT NULL
+      require: TRTSDT <= TRTEDT
+  - assert:
+      id: efficacy-population-is-itt
+      when: EFFFL = 'Y'
+      require: ITTFL = 'Y'

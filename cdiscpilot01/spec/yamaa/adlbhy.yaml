@@ -4,10 +4,12 @@ keys: [STUDYID, USUBJID, AVISITN, PARAMN]
 input:
   ADLBC:
     path: ../../data/adam/adlbc-yamaa.parquet
+    schema: adlbc.yaml
     empty_string: present
 base: ADLBC
 
 output:
+  report: ../../log/yamaa-adlbhy-report.csv
   path: ../../data/adam/adlbhy-yamaa.parquet
   columns: [STUDYID, SUBJID, USUBJID, TRTP, TRTPN, TRTA, TRTAN, TRTSDT, TRTEDT,
             AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX, COMP24FL, DSRAEFL, SAFFL,
@@ -29,19 +31,19 @@ intermediates:
     dataset: ADLBC
     key: [USUBJID]
     filter: "ADLBC.AVISITN = 0 AND ADLBC.PARAMCD = 'BILI'"
-    no_match: null
+    no_match: {literal: null}
 
   - id: BL_ALT
     dataset: ADLBC
     key: [USUBJID]
     filter: "ADLBC.AVISITN = 0 AND ADLBC.PARAMCD = 'ALT'"
-    no_match: null
+    no_match: {literal: null}
 
   - id: BL_AST
     dataset: ADLBC
     key: [USUBJID]
     filter: "ADLBC.AVISITN = 0 AND ADLBC.PARAMCD = 'AST'"
-    no_match: null
+    no_match: {literal: null}
 
   - id: BL_ANY
     dataset: ADLBC
@@ -49,7 +51,7 @@ intermediates:
     filter: "ADLBC.AVISITN = 0"
     order_by: [ADLBC.PARAMCD]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
 columns:
 - name: USUBJID
@@ -368,7 +370,7 @@ rows:
       _PARAMN_OUT:
         mapping:
           source: ADLBC.PARAMCD
-          unmapped: null
+          unmapped: {literal: null}
           dict:
             ALT: 1.0
             AST: 2.0
@@ -775,3 +777,12 @@ rows:
           - when: "_BASE = 1 AND _AVAL = 0"
             then: {literal: 0.0}
           - otherwise: {literal: null}
+
+verifications:
+  - row_count:
+      id: nonempty-analysis
+      min: 1
+  - assert:
+      id: treatment-date-order
+      when: TRTSDT IS NOT NULL AND TRTEDT IS NOT NULL
+      require: TRTSDT <= TRTEDT

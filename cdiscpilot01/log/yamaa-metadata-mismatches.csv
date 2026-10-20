@@ -1,0 +1,416 @@
+"dataset","column","reference_type","generated_type","reference_label","spec_label","generated_label","type_matches","spec_label_matches","serialized_label_matches"
+"ADAE","STUDYID","large_string","string","Study Identifier","Study Identifier","",TRUE,TRUE,FALSE
+"ADAE","SITEID","large_string","string","Study Site Identifier","Study Site Identifier","",TRUE,TRUE,FALSE
+"ADAE","USUBJID","large_string","string","Unique Subject Identifier","Unique Subject Identifier","",TRUE,TRUE,FALSE
+"ADAE","TRTA","large_string","string","Actual Treatment","Actual Treatment","",TRUE,TRUE,FALSE
+"ADAE","TRTAN","double","double","Actual Treatment (N)","Actual Treatment (N)","",TRUE,TRUE,FALSE
+"ADAE","AGE","double","double","Age","Age","",TRUE,TRUE,FALSE
+"ADAE","AGEGR1","large_string","string","Pooled Age Group 1","Pooled Age Group 1","",TRUE,TRUE,FALSE
+"ADAE","AGEGR1N","double","double","Pooled Age Group 1 (N)","Pooled Age Group 1 (N)","",TRUE,TRUE,FALSE
+"ADAE","RACE","large_string","string","Race","Race","",TRUE,TRUE,FALSE
+"ADAE","RACEN","double","double","Race (N)","Race (N)","",TRUE,TRUE,FALSE
+"ADAE","SEX","large_string","string","Sex","Sex","",TRUE,TRUE,FALSE
+"ADAE","SAFFL","large_string","string","Safety Population Flag","Safety Population Flag","",TRUE,TRUE,FALSE
+"ADAE","TRTSDT","date32[day]","date32[day]","Date of First Exposure to Treatment","Date of First Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADAE","TRTEDT","date32[day]","date32[day]","Date of Last Exposure to Treatment","Date of Last Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADAE","ASTDT","date32[day]","date32[day]","Analysis Start Date","Analysis Start Date","",TRUE,TRUE,FALSE
+"ADAE","ASTDTF","large_string","string","Analysis Start Date Imputation Flag","Analysis Start Date Imputation Flag","",TRUE,TRUE,FALSE
+"ADAE","ASTDY","double","double","Analysis Start Relative Day","Analysis Start Relative Day","",TRUE,TRUE,FALSE
+"ADAE","AENDT","date32[day]","date32[day]","Analysis End Date","Analysis End Date","",TRUE,TRUE,FALSE
+"ADAE","AENDY","double","double","Analysis End Relative Day","Analysis End Relative Day","",TRUE,TRUE,FALSE
+"ADAE","ADURN","double","double","AE Duration (N)","AE Duration (N)","",TRUE,TRUE,FALSE
+"ADAE","ADURU","large_string","string","AE Duration Units","AE Duration Units","",TRUE,TRUE,FALSE
+"ADAE","AETERM","large_string","string","Reported Term for the Adverse Event","Reported Term for the Adverse Event","",TRUE,TRUE,FALSE
+"ADAE","AELLT","large_string","string","Lowest Level Term","Lowest Level Term","",TRUE,TRUE,FALSE
+"ADAE","AELLTCD","double","double","Lowest Level Term Code","Lowest Level Term Code","",TRUE,TRUE,FALSE
+"ADAE","AEDECOD","large_string","string","Dictionary-Derived Term","Dictionary-Derived Term","",TRUE,TRUE,FALSE
+"ADAE","AEPTCD","double","double","Preferred Term Code","Preferred Term Code","",TRUE,TRUE,FALSE
+"ADAE","AEHLT","large_string","string","High Level Term","High Level Term","",TRUE,TRUE,FALSE
+"ADAE","AEHLTCD","double","double","High Level Term Code","High Level Term Code","",TRUE,TRUE,FALSE
+"ADAE","AEHLGT","large_string","string","High Level Group Term","High Level Group Term","",TRUE,TRUE,FALSE
+"ADAE","AEHLGTCD","double","double","High Level Group Term Code","High Level Group Term Code","",TRUE,TRUE,FALSE
+"ADAE","AEBODSYS","large_string","string","Body System or Organ Class","Body System or Organ Class","",TRUE,TRUE,FALSE
+"ADAE","AESOC","large_string","string","Primary System Organ Class","Primary System Organ Class","",TRUE,TRUE,FALSE
+"ADAE","AESOCCD","double","double","Primary System Organ Class Code","Primary System Organ Class Code","",TRUE,TRUE,FALSE
+"ADAE","AESEV","large_string","string","Severity/Intensity","Severity/Intensity","",TRUE,TRUE,FALSE
+"ADAE","AESER","large_string","string","Serious Event","Serious Event","",TRUE,TRUE,FALSE
+"ADAE","AESCAN","large_string","string","Involves Cancer","Involves Cancer","",TRUE,TRUE,FALSE
+"ADAE","AESCONG","large_string","string","Congenital Anomaly or Birth Defect","Congenital Anomaly or Birth Defect","",TRUE,TRUE,FALSE
+"ADAE","AESDISAB","large_string","string","Persist or Signif Disability/Incapacity","Persist or Signif Disability/Incapacity","",TRUE,TRUE,FALSE
+"ADAE","AESDTH","large_string","string","Results in Death","Results in Death","",TRUE,TRUE,FALSE
+"ADAE","AESHOSP","large_string","string","Requires or Prolongs Hospitalization","Requires or Prolongs Hospitalization","",TRUE,TRUE,FALSE
+"ADAE","AESLIFE","large_string","string","Is Life Threatening","Is Life Threatening","",TRUE,TRUE,FALSE
+"ADAE","AESOD","large_string","string","Occurred with Overdose","Occurred with Overdose","",TRUE,TRUE,FALSE
+"ADAE","AEREL","large_string","string","Causality","Causality","",TRUE,TRUE,FALSE
+"ADAE","AEACN","large_string","string","Action Taken with Study Treatment","Action Taken with Study Treatment","",TRUE,TRUE,FALSE
+"ADAE","AEOUT","large_string","string","Outcome of Adverse Event","Outcome of Adverse Event","",TRUE,TRUE,FALSE
+"ADAE","AESEQ","double","double","Sequence Number","Sequence Number","",TRUE,TRUE,FALSE
+"ADAE","TRTEMFL","large_string","string","Treatment Emergent Analysis Flag","Treatment Emergent Analysis Flag","",TRUE,TRUE,FALSE
+"ADAE","AOCCFL","large_string","string","1st Occurrence of Any AE Flag","1st Occurrence of Any AE Flag","",TRUE,TRUE,FALSE
+"ADAE","AOCCSFL","large_string","string","1st Occurrence of SOC Flag","1st Occurrence of SOC Flag","",TRUE,TRUE,FALSE
+"ADAE","AOCCPFL","large_string","string","1st Occurrence of Preferred Term Flag","1st Occurrence of Preferred Term Flag","",TRUE,TRUE,FALSE
+"ADAE","AOCC02FL","large_string","string","1st Occurrence 02 Flag for Serious","1st Occurrence 02 Flag for Serious","",TRUE,TRUE,FALSE
+"ADAE","AOCC03FL","large_string","string","1st Occurrence 03 Flag for Serious SOC","1st Occurrence 03 Flag for Serious SOC","",TRUE,TRUE,FALSE
+"ADAE","AOCC04FL","large_string","string","1st Occurrence 04 Flag for Serious PT","1st Occurrence 04 Flag for Serious PT","",TRUE,TRUE,FALSE
+"ADAE","CQ01NAM","large_string","string","Customized Query 01 Name","Customized Query 01 Name","",TRUE,TRUE,FALSE
+"ADAE","AOCC01FL","large_string","string","1st Occurrence 01 Flag for CQ01","1st Occurrence 01 Flag for CQ01","",TRUE,TRUE,FALSE
+"ADLBC","STUDYID","large_string","string","Study Identifier","Study Identifier","",TRUE,TRUE,FALSE
+"ADLBC","SUBJID","large_string","string","Subject Identifier for the Study","Subject Identifier for the Study","",TRUE,TRUE,FALSE
+"ADLBC","USUBJID","large_string","string","Unique Subject Identifier","Unique Subject Identifier","",TRUE,TRUE,FALSE
+"ADLBC","TRTP","large_string","string","Planned Treatment","Planned Treatment","",TRUE,TRUE,FALSE
+"ADLBC","TRTPN","double","double","Planned Treatment (N)","Planned Treatment (N)","",TRUE,TRUE,FALSE
+"ADLBC","TRTA","large_string","string","Actual Treatment","Actual Treatment","",TRUE,TRUE,FALSE
+"ADLBC","TRTAN","double","double","Actual Treatment (N)","Actual Treatment (N)","",TRUE,TRUE,FALSE
+"ADLBC","TRTSDT","date32[day]","date32[day]","Date of First Exposure to Treatment","Date of First Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADLBC","TRTEDT","date32[day]","date32[day]","Date of Last Exposure to Treatment","Date of Last Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADLBC","AGE","double","double","Age","Age","",TRUE,TRUE,FALSE
+"ADLBC","AGEGR1","large_string","string","Pooled Age Group 1","Pooled Age Group 1","",TRUE,TRUE,FALSE
+"ADLBC","AGEGR1N","double","double","Pooled Age Group 1 (N)","Pooled Age Group 1 (N)","",TRUE,TRUE,FALSE
+"ADLBC","RACE","large_string","string","Race","Race","",TRUE,TRUE,FALSE
+"ADLBC","RACEN","double","double","Race (N)","Race (N)","",TRUE,TRUE,FALSE
+"ADLBC","SEX","large_string","string","Sex","Sex","",TRUE,TRUE,FALSE
+"ADLBC","COMP24FL","large_string","string","Completers of Week 24 Population Flag","Completers of Week 24 Population Flag","",TRUE,TRUE,FALSE
+"ADLBC","DSRAEFL","large_string","string","Discontinued due to AE?","Discontinued due to AE?","",TRUE,TRUE,FALSE
+"ADLBC","SAFFL","large_string","string","Safety Population Flag","Safety Population Flag","",TRUE,TRUE,FALSE
+"ADLBC","AVISIT","large_string","string","Analysis Visit","Analysis Visit","",TRUE,TRUE,FALSE
+"ADLBC","AVISITN","double","double","Analysis Visit (N)","Analysis Visit (N)","",TRUE,TRUE,FALSE
+"ADLBC","ADY","double","double","Analysis Relative Day","Analysis Relative Day","",TRUE,TRUE,FALSE
+"ADLBC","ADT","date32[day]","date32[day]","Analysis Date","Analysis Date","",TRUE,TRUE,FALSE
+"ADLBC","VISIT","large_string","string","Visit Name","Visit Name","",TRUE,TRUE,FALSE
+"ADLBC","VISITNUM","double","double","Visit Number","Visit Number","",TRUE,TRUE,FALSE
+"ADLBC","PARAM","large_string","string","Parameter","Parameter","",TRUE,TRUE,FALSE
+"ADLBC","PARAMCD","large_string","string","Parameter Code","Parameter Code","",TRUE,TRUE,FALSE
+"ADLBC","PARAMN","double","double","Parameter (N)","Parameter (N)","",TRUE,TRUE,FALSE
+"ADLBC","PARCAT1","large_string","string","Parameter Category 1","Parameter Category 1","",TRUE,TRUE,FALSE
+"ADLBC","AVAL","double","double","Analysis Value","Analysis Value","",TRUE,TRUE,FALSE
+"ADLBC","BASE","double","double","Baseline Value","Baseline Value","",TRUE,TRUE,FALSE
+"ADLBC","CHG","double","double","Change from Baseline","Change from Baseline","",TRUE,TRUE,FALSE
+"ADLBC","A1LO","double","double","Analysis Range 1 Lower Limit","Analysis Range 1 Lower Limit","",TRUE,TRUE,FALSE
+"ADLBC","A1HI","double","double","Analysis Range 1 Upper Limit","Analysis Range 1 Upper Limit","",TRUE,TRUE,FALSE
+"ADLBC","R2A1LO","double","double","Ratio to Analysis Range 1 Lower Limit","Ratio to Analysis Range 1 Lower Limit","",TRUE,TRUE,FALSE
+"ADLBC","R2A1HI","double","double","Ratio to Analysis Range 1 Upper Limit","Ratio to Analysis Range 1 Upper Limit","",TRUE,TRUE,FALSE
+"ADLBC","BR2A1LO","double","double","Base Ratio to Analysis Range 1 Lower Lim","Base Ratio to Analysis Range 1 Lower Lim","",TRUE,TRUE,FALSE
+"ADLBC","BR2A1HI","double","double","Base Ratio to Analysis Range 1 Upper Lim","Base Ratio to Analysis Range 1 Upper Lim","",TRUE,TRUE,FALSE
+"ADLBC","ANL01FL","large_string","string","Analysis Record Flag 1","Analysis Record Flag 1","",TRUE,TRUE,FALSE
+"ADLBC","ALBTRVAL","double","double","Amount Threshold Range","Amount Threshold Range","",TRUE,TRUE,FALSE
+"ADLBC","ANRIND","large_string","string","Analysis Reference Range Indicator","Analysis Reference Range Indicator","",TRUE,TRUE,FALSE
+"ADLBC","BNRIND","large_string","string","Baseline Reference Range Indicator","Baseline Reference Range Indicator","",TRUE,TRUE,FALSE
+"ADLBC","ABLFL","large_string","string","Baseline Record Flag","Baseline Record Flag","",TRUE,TRUE,FALSE
+"ADLBC","AENTMTFL","large_string","string","Last value in treatment visit","Last value in treatment visit","",TRUE,TRUE,FALSE
+"ADLBC","LBSEQ","double","double","Sequence Number","Sequence Number","",TRUE,TRUE,FALSE
+"ADLBC","LBNRIND","large_string","string","Reference Range Indicator","Reference Range Indicator","",TRUE,TRUE,FALSE
+"ADLBC","LBSTRESN","double","double","Numeric Result/Finding in Standard Units","Numeric Result/Finding in Standard Units","",TRUE,TRUE,FALSE
+"ADLBH","STUDYID","large_string","string","Study Identifier","Study Identifier","",TRUE,TRUE,FALSE
+"ADLBH","SUBJID","large_string","string","Subject Identifier for the Study","Subject Identifier for the Study","",TRUE,TRUE,FALSE
+"ADLBH","USUBJID","large_string","string","Unique Subject Identifier","Unique Subject Identifier","",TRUE,TRUE,FALSE
+"ADLBH","TRTP","large_string","string","Planned Treatment","Planned Treatment","",TRUE,TRUE,FALSE
+"ADLBH","TRTPN","double","double","Planned Treatment (N)","Planned Treatment (N)","",TRUE,TRUE,FALSE
+"ADLBH","TRTA","large_string","string","Actual Treatment","Actual Treatment","",TRUE,TRUE,FALSE
+"ADLBH","TRTAN","double","double","Actual Treatment (N)","Actual Treatment (N)","",TRUE,TRUE,FALSE
+"ADLBH","TRTSDT","date32[day]","date32[day]","Date of First Exposure to Treatment","Date of First Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADLBH","TRTEDT","date32[day]","date32[day]","Date of Last Exposure to Treatment","Date of Last Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADLBH","AGE","double","double","Age","Age","",TRUE,TRUE,FALSE
+"ADLBH","AGEGR1","large_string","string","Pooled Age Group 1","Pooled Age Group 1","",TRUE,TRUE,FALSE
+"ADLBH","AGEGR1N","double","double","Pooled Age Group 1 (N)","Pooled Age Group 1 (N)","",TRUE,TRUE,FALSE
+"ADLBH","RACE","large_string","string","Race","Race","",TRUE,TRUE,FALSE
+"ADLBH","RACEN","double","double","Race (N)","Race (N)","",TRUE,TRUE,FALSE
+"ADLBH","SEX","large_string","string","Sex","Sex","",TRUE,TRUE,FALSE
+"ADLBH","COMP24FL","large_string","string","Completers of Week 24 Population Flag","Completers of Week 24 Population Flag","",TRUE,TRUE,FALSE
+"ADLBH","DSRAEFL","large_string","string","Discontinued due to AE?","Discontinued due to AE?","",TRUE,TRUE,FALSE
+"ADLBH","SAFFL","large_string","string","Safety Population Flag","Safety Population Flag","",TRUE,TRUE,FALSE
+"ADLBH","AVISIT","large_string","string","Analysis Visit","Analysis Visit","",TRUE,TRUE,FALSE
+"ADLBH","AVISITN","double","double","Analysis Visit (N)","Analysis Visit (N)","",TRUE,TRUE,FALSE
+"ADLBH","ADY","double","double","Analysis Relative Day","Analysis Relative Day","",TRUE,TRUE,FALSE
+"ADLBH","ADT","date32[day]","date32[day]","Analysis Date","Analysis Date","",TRUE,TRUE,FALSE
+"ADLBH","VISIT","large_string","string","Visit Name","Visit Name","",TRUE,TRUE,FALSE
+"ADLBH","VISITNUM","double","double","Visit Number","Visit Number","",TRUE,TRUE,FALSE
+"ADLBH","PARAM","large_string","string","Parameter","Parameter","",TRUE,TRUE,FALSE
+"ADLBH","PARAMCD","large_string","string","Parameter Code","Parameter Code","",TRUE,TRUE,FALSE
+"ADLBH","PARAMN","double","double","Parameter (N)","Parameter (N)","",TRUE,TRUE,FALSE
+"ADLBH","PARCAT1","large_string","string","Parameter Category 1","Parameter Category 1","",TRUE,TRUE,FALSE
+"ADLBH","AVAL","double","double","Analysis Value","Analysis Value","",TRUE,TRUE,FALSE
+"ADLBH","BASE","double","double","Baseline Value","Baseline Value","",TRUE,TRUE,FALSE
+"ADLBH","CHG","double","double","Change from Baseline","Change from Baseline","",TRUE,TRUE,FALSE
+"ADLBH","A1LO","double","double","Analysis Range 1 Lower Limit","Analysis Range 1 Lower Limit","",TRUE,TRUE,FALSE
+"ADLBH","A1HI","double","double","Analysis Range 1 Upper Limit","Analysis Range 1 Upper Limit","",TRUE,TRUE,FALSE
+"ADLBH","R2A1LO","double","double","Ratio to Analysis Range 1 Lower Limit","Ratio to Analysis Range 1 Lower Limit","",TRUE,TRUE,FALSE
+"ADLBH","R2A1HI","double","double","Ratio to Analysis Range 1 Upper Limit","Ratio to Analysis Range 1 Upper Limit","",TRUE,TRUE,FALSE
+"ADLBH","BR2A1LO","double","double","Base Ratio to Analysis Range 1 Lower Lim","Base Ratio to Analysis Range 1 Lower Lim","",TRUE,TRUE,FALSE
+"ADLBH","BR2A1HI","double","double","Base Ratio to Analysis Range 1 Upper Lim","Base Ratio to Analysis Range 1 Upper Lim","",TRUE,TRUE,FALSE
+"ADLBH","ANL01FL","large_string","string","Analysis Record Flag 1","Analysis Record Flag 1","",TRUE,TRUE,FALSE
+"ADLBH","ALBTRVAL","double","double","Amount Threshold Range","Amount Threshold Range","",TRUE,TRUE,FALSE
+"ADLBH","ANRIND","large_string","string","Analysis Reference Range Indicator","Analysis Reference Range Indicator","",TRUE,TRUE,FALSE
+"ADLBH","BNRIND","large_string","string","Baseline Reference Range Indicator","Baseline Reference Range Indicator","",TRUE,TRUE,FALSE
+"ADLBH","ABLFL","large_string","string","Baseline Record Flag","Baseline Record Flag","",TRUE,TRUE,FALSE
+"ADLBH","AENTMTFL","large_string","string","Last value in treatment visit","Last value in treatment visit","",TRUE,TRUE,FALSE
+"ADLBH","LBSEQ","double","double","Sequence Number","Sequence Number","",TRUE,TRUE,FALSE
+"ADLBH","LBNRIND","large_string","string","Reference Range Indicator","Reference Range Indicator","",TRUE,TRUE,FALSE
+"ADLBH","LBSTRESN","double","double","Numeric Result/Finding in Standard Units","Numeric Result/Finding in Standard Units","",TRUE,TRUE,FALSE
+"ADLBHY","STUDYID","large_string","string","Study Identifier","Study Identifier","",TRUE,TRUE,FALSE
+"ADLBHY","SUBJID","large_string","string","Subject Identifier for the Study","Subject Identifier for the Study","",TRUE,TRUE,FALSE
+"ADLBHY","USUBJID","large_string","string","Unique Subject Identifier","Unique Subject Identifier","",TRUE,TRUE,FALSE
+"ADLBHY","TRTP","large_string","string","Planned Treatment","Planned Treatment","",TRUE,TRUE,FALSE
+"ADLBHY","TRTPN","double","double","Planned Treatment (N)","Planned Treatment (N)","",TRUE,TRUE,FALSE
+"ADLBHY","TRTA","large_string","string","Actual Treatment","Actual Treatment","",TRUE,TRUE,FALSE
+"ADLBHY","TRTAN","double","double","Actual Treatment (N)","Actual Treatment (N)","",TRUE,TRUE,FALSE
+"ADLBHY","TRTSDT","date32[day]","date32[day]","Date of First Exposure to Treatment","Date of First Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADLBHY","TRTEDT","date32[day]","date32[day]","Date of Last Exposure to Treatment","Date of Last Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADLBHY","AGE","double","double","Age","Age","",TRUE,TRUE,FALSE
+"ADLBHY","AGEGR1","large_string","string","Pooled Age Group 1","Pooled Age Group 1","",TRUE,TRUE,FALSE
+"ADLBHY","AGEGR1N","double","double","Pooled Age Group 1 (N)","Pooled Age Group 1 (N)","",TRUE,TRUE,FALSE
+"ADLBHY","RACE","large_string","string","Race","Race","",TRUE,TRUE,FALSE
+"ADLBHY","RACEN","double","double","Race (N)","Race (N)","",TRUE,TRUE,FALSE
+"ADLBHY","SEX","large_string","string","Sex","Sex","",TRUE,TRUE,FALSE
+"ADLBHY","COMP24FL","large_string","string","Completers of Week 24 Population Flag","Completers of Week 24 Population Flag","",TRUE,TRUE,FALSE
+"ADLBHY","DSRAEFL","large_string","string","Discontinued due to AE?","Discontinued due to AE?","",TRUE,TRUE,FALSE
+"ADLBHY","SAFFL","large_string","string","Safety Population Flag","Safety Population Flag","",TRUE,TRUE,FALSE
+"ADLBHY","AVISIT","large_string","string","Analysis Visit","Analysis Visit","",TRUE,TRUE,FALSE
+"ADLBHY","AVISITN","double","double","Analysis Visit (N)","Analysis Visit (N)","",TRUE,TRUE,FALSE
+"ADLBHY","ADY","double","double","Analysis Relative Day","Analysis Relative Day","",TRUE,TRUE,FALSE
+"ADLBHY","ADT","date32[day]","date32[day]","Analysis Date","Analysis Date","",TRUE,TRUE,FALSE
+"ADLBHY","VISIT","large_string","string","Visit Name","Visit Name","",TRUE,TRUE,FALSE
+"ADLBHY","VISITNUM","double","double","Visit Number","Visit Number","",TRUE,TRUE,FALSE
+"ADLBHY","PARAMTYP","large_string","string","Parameter Type","Parameter Type","",TRUE,TRUE,FALSE
+"ADLBHY","PARAM","large_string","string","Parameter","Parameter","",TRUE,TRUE,FALSE
+"ADLBHY","PARAMCD","large_string","string","Parameter Code","Parameter Code","",TRUE,TRUE,FALSE
+"ADLBHY","PARAMN","double","double","Parameter (N)","Parameter (N)","",TRUE,TRUE,FALSE
+"ADLBHY","PARCAT1","large_string","string","Parameter Category 1","Parameter Category 1","",TRUE,TRUE,FALSE
+"ADLBHY","AVAL","double","double","Analysis Value","Analysis Value","",TRUE,TRUE,FALSE
+"ADLBHY","BASE","double","double","Baseline Value","Baseline Value","",TRUE,TRUE,FALSE
+"ADLBHY","A1LO","double","double","Analysis Range 1 Lower Limit","Analysis Range 1 Lower Limit","",TRUE,TRUE,FALSE
+"ADLBHY","A1HI","double","double","Analysis Range 1 Upper Limit","Analysis Range 1 Upper Limit","",TRUE,TRUE,FALSE
+"ADLBHY","R2A1LO","double","double","Ratio to Analysis Range 1 Lower Limit","Ratio to Analysis Range 1 Lower Limit","",TRUE,TRUE,FALSE
+"ADLBHY","R2A1HI","double","double","Ratio to Analysis Range 1 Upper Limit","Ratio to Analysis Range 1 Upper Limit","",TRUE,TRUE,FALSE
+"ADLBHY","BR2A1LO","double","double","Base Ratio to Analysis Range 1 Lower Lim","Base Ratio to Analysis Range 1 Lower Lim","",TRUE,TRUE,FALSE
+"ADLBHY","BR2A1HI","double","double","Base Ratio to Analysis Range 1 Upper Lim","Base Ratio to Analysis Range 1 Upper Lim","",TRUE,TRUE,FALSE
+"ADLBHY","ABLFL","large_string","string","Baseline Record Flag","Baseline Record Flag","",TRUE,TRUE,FALSE
+"ADLBHY","SHIFT1","large_string","string","Shift 1","Shift 1","",TRUE,TRUE,FALSE
+"ADLBHY","SHIFT1N","double","double","Shift 1 (N)","Shift 1 (N)","",TRUE,TRUE,FALSE
+"ADLBHY","CRIT1","large_string","string","Analysis Criterion 1","Analysis Criterion 1","",TRUE,TRUE,FALSE
+"ADLBHY","CRIT1FL","large_string","string","Criterion 1 Evaluation Result Flag","Criterion 1 Evaluation Result Flag","",TRUE,TRUE,FALSE
+"ADLBHY","CRIT1FN","double","double","Criterion 1 Evaluation Result Flag (N)","Criterion 1 Evaluation Result Flag (N)","",TRUE,TRUE,FALSE
+"ADQSADAS","STUDYID","large_string","string","Study Identifier","Study Identifier","",TRUE,TRUE,FALSE
+"ADQSADAS","SITEID","large_string","string","Study Site Identifier","Study Site Identifier","",TRUE,TRUE,FALSE
+"ADQSADAS","SITEGR1","large_string","string","Pooled Site Group 1","Pooled Site Group 1","",TRUE,TRUE,FALSE
+"ADQSADAS","USUBJID","large_string","string","Unique Subject Identifier","Unique Subject Identifier","",TRUE,TRUE,FALSE
+"ADQSADAS","TRTSDT","date32[day]","date32[day]","Date of First Exposure to Treatment","Date of First Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADQSADAS","TRTEDT","date32[day]","date32[day]","Date of Last Exposure to Treatment","Date of Last Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADQSADAS","TRTP","large_string","string","Planned Treatment","Planned Treatment","",TRUE,TRUE,FALSE
+"ADQSADAS","TRTPN","double","double","Planned Treatment (N)","Planned Treatment (N)","",TRUE,TRUE,FALSE
+"ADQSADAS","AGE","double","double","Age","Age","",TRUE,TRUE,FALSE
+"ADQSADAS","AGEGR1","large_string","string","Pooled Age Group 1","Pooled Age Group 1","",TRUE,TRUE,FALSE
+"ADQSADAS","AGEGR1N","double","double","Pooled Age Group 1 (N)","Pooled Age Group 1 (N)","",TRUE,TRUE,FALSE
+"ADQSADAS","RACE","large_string","string","Race","Race","",TRUE,TRUE,FALSE
+"ADQSADAS","RACEN","double","double","Race (N)","Race (N)","",TRUE,TRUE,FALSE
+"ADQSADAS","SEX","large_string","string","Sex","Sex","",TRUE,TRUE,FALSE
+"ADQSADAS","ITTFL","large_string","string","Intent-to-Treat Population Flag","Intent-to-Treat Population Flag","",TRUE,TRUE,FALSE
+"ADQSADAS","EFFFL","large_string","string","Efficacy Population Flag","Efficacy Population Flag","",TRUE,TRUE,FALSE
+"ADQSADAS","COMP24FL","large_string","string","Completers of Week 24 Population Flag","Completers of Week 24 Population Flag","",TRUE,TRUE,FALSE
+"ADQSADAS","AVISIT","large_string","string","Analysis Visit","Analysis Visit","",TRUE,TRUE,FALSE
+"ADQSADAS","AVISITN","double","double","Analysis Visit (N)","Analysis Visit (N)","",TRUE,TRUE,FALSE
+"ADQSADAS","VISIT","large_string","string","Visit Name","Visit Name","",TRUE,TRUE,FALSE
+"ADQSADAS","VISITNUM","double","double","Visit Number","Visit Number","",TRUE,TRUE,FALSE
+"ADQSADAS","ADY","double","double","Analysis Relative Day","Analysis Relative Day","",TRUE,TRUE,FALSE
+"ADQSADAS","ADT","date32[day]","date32[day]","Analysis Date","Analysis Date","",TRUE,TRUE,FALSE
+"ADQSADAS","PARAM","large_string","string","Parameter","Parameter","",TRUE,TRUE,FALSE
+"ADQSADAS","PARAMCD","large_string","string","Parameter Code","Parameter Code","",TRUE,TRUE,FALSE
+"ADQSADAS","PARAMN","double","double","Parameter (N)","Parameter (N)","",TRUE,TRUE,FALSE
+"ADQSADAS","AVAL","double","double","Analysis Value","Analysis Value","",TRUE,TRUE,FALSE
+"ADQSADAS","BASE","double","double","Baseline Value","Baseline Value","",TRUE,TRUE,FALSE
+"ADQSADAS","CHG","double","double","Baseline Value","Baseline Value","",TRUE,TRUE,FALSE
+"ADQSADAS","PCHG","double","double","Percent Change from Baseline","Percent Change from Baseline","",TRUE,TRUE,FALSE
+"ADQSADAS","ABLFL","large_string","string","ABLFL","ABLFL","",TRUE,TRUE,FALSE
+"ADQSADAS","ANL01FL","large_string","string","Analysis Record Flag 01","Analysis Record Flag 01","",TRUE,TRUE,FALSE
+"ADQSADAS","DTYPE","large_string","string","Derivation Type","Derivation Type","",TRUE,TRUE,FALSE
+"ADQSADAS","AWRANGE","large_string","string","Analysis Window Valid Relative Range","Analysis Window Valid Relative Range","",TRUE,TRUE,FALSE
+"ADQSADAS","AWTARGET","double","double","Analysis Window Target","Analysis Window Target","",TRUE,TRUE,FALSE
+"ADQSADAS","AWTDIFF","double","double","Analysis Window Diff from Target","Analysis Window Diff from Target","",TRUE,TRUE,FALSE
+"ADQSADAS","AWLO","double","double","Analysis Window Beginning Timepoint","Analysis Window Beginning Timepoint","",TRUE,TRUE,FALSE
+"ADQSADAS","AWHI","double","double","Analysis Window Ending Timepoint","Analysis Window Ending Timepoint","",TRUE,TRUE,FALSE
+"ADQSADAS","AWU","large_string","string","Analysis Window Unit","Analysis Window Unit","",TRUE,TRUE,FALSE
+"ADQSADAS","QSSEQ","double","double","Sequence Number","Sequence Number","",TRUE,TRUE,FALSE
+"ADQSCIBC","STUDYID","large_string","string","Study Identifier","Study Identifier","",TRUE,TRUE,FALSE
+"ADQSCIBC","SITEID","large_string","string","Study Site Identifier","Study Site Identifier","",TRUE,TRUE,FALSE
+"ADQSCIBC","SITEGR1","large_string","string","Pooled Site Group 1","Pooled Site Group 1","",TRUE,TRUE,FALSE
+"ADQSCIBC","USUBJID","large_string","string","Unique Subject Identifier","Unique Subject Identifier","",TRUE,TRUE,FALSE
+"ADQSCIBC","TRTSDT","date32[day]","date32[day]","Date of First Exposure to Treatment","Date of First Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADQSCIBC","TRTEDT","date32[day]","date32[day]","Date of Last Exposure to Treatment","Date of Last Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADQSCIBC","TRTP","large_string","string","Planned Treatment","Planned Treatment","",TRUE,TRUE,FALSE
+"ADQSCIBC","TRTPN","double","double","Planned Treatment (N)","Planned Treatment (N)","",TRUE,TRUE,FALSE
+"ADQSCIBC","AGE","double","double","Age","Age","",TRUE,TRUE,FALSE
+"ADQSCIBC","AGEGR1","large_string","string","Pooled Age Group 1","Pooled Age Group 1","",TRUE,TRUE,FALSE
+"ADQSCIBC","AGEGR1N","double","double","Pooled Age Group 1 (N)","Pooled Age Group 1 (N)","",TRUE,TRUE,FALSE
+"ADQSCIBC","RACE","large_string","string","Race","Race","",TRUE,TRUE,FALSE
+"ADQSCIBC","RACEN","double","double","Race (N)","Race (N)","",TRUE,TRUE,FALSE
+"ADQSCIBC","SEX","large_string","string","Sex","Sex","",TRUE,TRUE,FALSE
+"ADQSCIBC","ITTFL","large_string","string","Intent-to-Treat Population Flag","Intent-to-Treat Population Flag","",TRUE,TRUE,FALSE
+"ADQSCIBC","EFFFL","large_string","string","Efficacy Population Flag","Efficacy Population Flag","",TRUE,TRUE,FALSE
+"ADQSCIBC","COMP24FL","large_string","string","Completers of Week 24 Population Flag","Completers of Week 24 Population Flag","",TRUE,TRUE,FALSE
+"ADQSCIBC","AVISIT","large_string","string","Analysis Visit","Analysis Visit","",TRUE,TRUE,FALSE
+"ADQSCIBC","AVISITN","double","double","Analysis Visit (N)","Analysis Visit (N)","",TRUE,TRUE,FALSE
+"ADQSCIBC","VISIT","large_string","string","Visit Name","Visit Name","",TRUE,TRUE,FALSE
+"ADQSCIBC","VISITNUM","double","double","Visit Number","Visit Number","",TRUE,TRUE,FALSE
+"ADQSCIBC","ADY","double","double","Analysis Relative Day","Analysis Relative Day","",TRUE,TRUE,FALSE
+"ADQSCIBC","ADT","date32[day]","date32[day]","Analysis Date","Analysis Date","",TRUE,TRUE,FALSE
+"ADQSCIBC","PARAMCD","large_string","string","Parameter Code","Parameter Code","",TRUE,TRUE,FALSE
+"ADQSCIBC","PARAM","large_string","string","Parameter","Parameter","",TRUE,TRUE,FALSE
+"ADQSCIBC","PARAMN","double","double","Parameter (N)","Parameter (N)","",TRUE,TRUE,FALSE
+"ADQSCIBC","AVAL","double","double","Analysis Value","Analysis Value","",TRUE,TRUE,FALSE
+"ADQSCIBC","ANL01FL","large_string","string","Analysis Record Flag 01","Analysis Record Flag 01","",TRUE,TRUE,FALSE
+"ADQSCIBC","DTYPE","large_string","string","Derivation Type","Derivation Type","",TRUE,TRUE,FALSE
+"ADQSCIBC","AWRANGE","large_string","string","Analysis Window Valid Relative Range","Analysis Window Valid Relative Range","",TRUE,TRUE,FALSE
+"ADQSCIBC","AWTARGET","double","double","Analysis Window Target","Analysis Window Target","",TRUE,TRUE,FALSE
+"ADQSCIBC","AWTDIFF","double","double","Analysis Window Diff from Target","Analysis Window Diff from Target","",TRUE,TRUE,FALSE
+"ADQSCIBC","AWLO","double","double","Analysis Window Beginning Timepoint","Analysis Window Beginning Timepoint","",TRUE,TRUE,FALSE
+"ADQSCIBC","AWHI","double","double","Analysis Window Ending Timepoint","Analysis Window Ending Timepoint","",TRUE,TRUE,FALSE
+"ADQSCIBC","AWU","large_string","string","Analysis Window Unit","Analysis Window Unit","",TRUE,TRUE,FALSE
+"ADQSCIBC","QSSEQ","double","double","Sequence Number","Sequence Number","",TRUE,TRUE,FALSE
+"ADQSNPIX","STUDYID","large_string","string","Study Identifier","Study Identifier","",TRUE,TRUE,FALSE
+"ADQSNPIX","SITEID","large_string","string","Study Site Identifier","Study Site Identifier","",TRUE,TRUE,FALSE
+"ADQSNPIX","SITEGR1","large_string","string","Pooled Site Group 1","Pooled Site Group 1","",TRUE,TRUE,FALSE
+"ADQSNPIX","USUBJID","large_string","string","Unique Subject Identifier","Unique Subject Identifier","",TRUE,TRUE,FALSE
+"ADQSNPIX","TRTSDT","date32[day]","date32[day]","Date of First Exposure to Treatment","Date of First Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADQSNPIX","TRTEDT","date32[day]","date32[day]","Date of Last Exposure to Treatment","Date of Last Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADQSNPIX","TRTP","large_string","string","Planned Treatment","Planned Treatment","",TRUE,TRUE,FALSE
+"ADQSNPIX","TRTPN","double","double","Planned Treatment (N)","Planned Treatment (N)","",TRUE,TRUE,FALSE
+"ADQSNPIX","AGE","double","double","Age","Age","",TRUE,TRUE,FALSE
+"ADQSNPIX","AGEGR1","large_string","string","Pooled Age Group 1","Pooled Age Group 1","",TRUE,TRUE,FALSE
+"ADQSNPIX","AGEGR1N","double","double","Pooled Age Group 1 (N)","Pooled Age Group 1 (N)","",TRUE,TRUE,FALSE
+"ADQSNPIX","RACE","large_string","string","Race","Race","",TRUE,TRUE,FALSE
+"ADQSNPIX","RACEN","double","double","Race (N)","Race (N)","",TRUE,TRUE,FALSE
+"ADQSNPIX","SEX","large_string","string","Sex","Sex","",TRUE,TRUE,FALSE
+"ADQSNPIX","ITTFL","large_string","string","Intent-to-Treat Population Flag","Intent-to-Treat Population Flag","",TRUE,TRUE,FALSE
+"ADQSNPIX","EFFFL","large_string","string","Efficacy Population Flag","Efficacy Population Flag","",TRUE,TRUE,FALSE
+"ADQSNPIX","COMP24FL","large_string","string","Completers of Week 24 Population Flag","Completers of Week 24 Population Flag","",TRUE,TRUE,FALSE
+"ADQSNPIX","AVISIT","large_string","string","Analysis Visit","Analysis Visit","",TRUE,TRUE,FALSE
+"ADQSNPIX","AVISITN","double","double","Analysis Visit (N)","Analysis Visit (N)","",TRUE,TRUE,FALSE
+"ADQSNPIX","ADY","double","double","Analysis Relative Day","Analysis Relative Day","",TRUE,TRUE,FALSE
+"ADQSNPIX","ADT","date32[day]","date32[day]","Analysis Date","Analysis Date","",TRUE,TRUE,FALSE
+"ADQSNPIX","VISITNUM","double","double","Visit Number","Visit Number","",TRUE,TRUE,FALSE
+"ADQSNPIX","VISIT","large_string","string","Visit Name","Visit Name","",TRUE,TRUE,FALSE
+"ADQSNPIX","PARAM","large_string","string","Parameter","Parameter","",TRUE,TRUE,FALSE
+"ADQSNPIX","PARAMCD","large_string","string","Parameter Code","Parameter Code","",TRUE,TRUE,FALSE
+"ADQSNPIX","PARAMN","double","double","Parameter (N)","Parameter (N)","",TRUE,TRUE,FALSE
+"ADQSNPIX","PARAMTYP","large_string","string","Parameter Type","Parameter Type","",TRUE,TRUE,FALSE
+"ADQSNPIX","AVAL","double","double","Analysis Value","Analysis Value","",TRUE,TRUE,FALSE
+"ADQSNPIX","BASE","double","double","Baseline Value","Baseline Value","",TRUE,TRUE,FALSE
+"ADQSNPIX","CHG","double","double","Change from Baseline","Change from Baseline","",TRUE,TRUE,FALSE
+"ADQSNPIX","PCHG","double","double","Percent Change from Baseline","Percent Change from Baseline","",TRUE,TRUE,FALSE
+"ADQSNPIX","ABLFL","large_string","string","Analysis Baseline Flag","Analysis Baseline Flag","",TRUE,TRUE,FALSE
+"ADQSNPIX","ANL01FL","large_string","string","Analysis Record Flag 01","Analysis Record Flag 01","",TRUE,TRUE,FALSE
+"ADQSNPIX","DTYPE","large_string","string","Derivation Type","Derivation Type","",TRUE,TRUE,FALSE
+"ADQSNPIX","AWRANGE","large_string","string","Analysis Window Valid Relative Range","Analysis Window Valid Relative Range","",TRUE,TRUE,FALSE
+"ADQSNPIX","AWTARGET","double","double","Analysis Window Target","Analysis Window Target","",TRUE,TRUE,FALSE
+"ADQSNPIX","AWTDIFF","double","double","Analysis Window Diff from Target","Analysis Window Diff from Target","",TRUE,TRUE,FALSE
+"ADQSNPIX","AWLO","double","double","Analysis Window Beginning Timepoint","Analysis Window Beginning Timepoint","",TRUE,TRUE,FALSE
+"ADQSNPIX","AWHI","double","double","Analysis Window Ending Timepoint","Analysis Window Ending Timepoint","",TRUE,TRUE,FALSE
+"ADQSNPIX","AWU","large_string","string","Analysis Window Unit","Analysis Window Unit","",TRUE,TRUE,FALSE
+"ADQSNPIX","QSSEQ","double","double","Sequence Number","Sequence Number","",TRUE,TRUE,FALSE
+"ADSL","STUDYID","large_string","string","Study Identifier","Study Identifier","",TRUE,TRUE,FALSE
+"ADSL","USUBJID","large_string","string","Unique Subject Identifier","Unique Subject Identifier","",TRUE,TRUE,FALSE
+"ADSL","SUBJID","large_string","string","Subject Identifier for the Study","Subject Identifier for the Study","",TRUE,TRUE,FALSE
+"ADSL","SITEID","large_string","string","Study Site Identifier","Study Site Identifier","",TRUE,TRUE,FALSE
+"ADSL","SITEGR1","large_string","string","Pooled Site Group 1","Pooled Site Group 1","",TRUE,TRUE,FALSE
+"ADSL","ARM","large_string","string","Description of Planned Arm","Description of Planned Arm","",TRUE,TRUE,FALSE
+"ADSL","TRT01P","large_string","string","Planned Treatment for Period 01","Planned Treatment for Period 01","",TRUE,TRUE,FALSE
+"ADSL","TRT01PN","double","double","Planned Treatment for Period 01 (N)","Planned Treatment for Period 01 (N)","",TRUE,TRUE,FALSE
+"ADSL","TRT01A","large_string","string","Actual Treatment for Period 01","Actual Treatment for Period 01","",TRUE,TRUE,FALSE
+"ADSL","TRT01AN","double","double","Actual Treatment for Period 01 (N)","Actual Treatment for Period 01 (N)","",TRUE,TRUE,FALSE
+"ADSL","TRTSDT","date32[day]","date32[day]","Date of First Exposure to Treatment","Date of First Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADSL","TRTEDT","date32[day]","date32[day]","Date of Last Exposure to Treatment","Date of Last Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADSL","TRTDUR","double","double","Duration of Treatment (days)","Duration of Treatment (days)","",TRUE,TRUE,FALSE
+"ADSL","AVGDD","double","double","Avg Daily Dose (as planned)","Avg Daily Dose (as planned)","",TRUE,TRUE,FALSE
+"ADSL","CUMDOSE","double","double","Cumulative Dose (as planned)","Cumulative Dose (as planned)","",TRUE,TRUE,FALSE
+"ADSL","AGE","double","double","Age","Age","",TRUE,TRUE,FALSE
+"ADSL","AGEGR1","large_string","string","Pooled Age Group 1","Pooled Age Group 1","",TRUE,TRUE,FALSE
+"ADSL","AGEGR1N","double","double","Pooled Age Group 1 (N)","Pooled Age Group 1 (N)","",TRUE,TRUE,FALSE
+"ADSL","AGEU","large_string","string","Age Units","Age Units","",TRUE,TRUE,FALSE
+"ADSL","RACE","large_string","string","Race","Race","",TRUE,TRUE,FALSE
+"ADSL","RACEN","double","double","Race (N)","Race (N)","",TRUE,TRUE,FALSE
+"ADSL","SEX","large_string","string","Sex","Sex","",TRUE,TRUE,FALSE
+"ADSL","ETHNIC","large_string","string","Ethnicity","Ethnicity","",TRUE,TRUE,FALSE
+"ADSL","SAFFL","large_string","string","Safety Population Flag","Safety Population Flag","",TRUE,TRUE,FALSE
+"ADSL","ITTFL","large_string","string","Intent-To-Treat Population Flag","Intent-To-Treat Population Flag","",TRUE,TRUE,FALSE
+"ADSL","EFFFL","large_string","string","Efficacy Population Flag","Efficacy Population Flag","",TRUE,TRUE,FALSE
+"ADSL","COMP8FL","large_string","string","Completers of Week 8 Population Flag","Completers of Week 8 Population Flag","",TRUE,TRUE,FALSE
+"ADSL","COMP16FL","large_string","string","Completers of Week 16 Population Flag","Completers of Week 16 Population Flag","",TRUE,TRUE,FALSE
+"ADSL","COMP24FL","large_string","string","Completers of Week 24 Population Flag","Completers of Week 24 Population Flag","",TRUE,TRUE,FALSE
+"ADSL","DISCONFL","large_string","string","Did the Subject Discontinue the Study?","Did the Subject Discontinue the Study?","",TRUE,TRUE,FALSE
+"ADSL","DSRAEFL","large_string","string","Discontinued due to AE?","Discontinued due to AE?","",TRUE,TRUE,FALSE
+"ADSL","DTHFL","large_string","string","Subject Died?","Subject Died?","",TRUE,TRUE,FALSE
+"ADSL","BMIBL","double","double","Baseline BMI (kg/m^2)","Baseline BMI (kg/m^2)","",TRUE,TRUE,FALSE
+"ADSL","BMIBLGR1","large_string","string","Pooled Baseline BMI Group 1","Pooled Baseline BMI Group 1","",TRUE,TRUE,FALSE
+"ADSL","HEIGHTBL","double","double","Baseline Height (cm)","Baseline Height (cm)","",TRUE,TRUE,FALSE
+"ADSL","WEIGHTBL","double","double","Baseline Weight (kg)","Baseline Weight (kg)","",TRUE,TRUE,FALSE
+"ADSL","EDUCLVL","double","double","Years of Education","Years of Education","",TRUE,TRUE,FALSE
+"ADSL","DISONSDT","date32[day]","date32[day]","Date of Onset of Disease","Date of Onset of Disease","",TRUE,TRUE,FALSE
+"ADSL","DURDIS","double","double","Duration of Disease (Months)","Duration of Disease (Months)","",TRUE,TRUE,FALSE
+"ADSL","DURDSGR1","large_string","string","Pooled Disease Duration Group 1","Pooled Disease Duration Group 1","",TRUE,TRUE,FALSE
+"ADSL","VISIT1DT","date32[day]","date32[day]","Date of Visit 1","Date of Visit 1","",TRUE,TRUE,FALSE
+"ADSL","RFSTDTC","large_string","string","Subject Reference Start Date/Time","Subject Reference Start Date/Time","",TRUE,TRUE,FALSE
+"ADSL","RFENDTC","large_string","string","Subject Reference End Date/Time","Subject Reference End Date/Time","",TRUE,TRUE,FALSE
+"ADSL","VISNUMEN","double","double","End of Trt Visit (Vis 12 or Early Term.)","End of Trt Visit (Vis 12 or Early Term.)","",TRUE,TRUE,FALSE
+"ADSL","RFENDT","date32[day]","date32[day]","Date of Discontinuation/Completion","Date of Discontinuation/Completion","",TRUE,TRUE,FALSE
+"ADSL","DCDECOD","large_string","string","Standardized Disposition Term","Standardized Disposition Term","",TRUE,TRUE,FALSE
+"ADSL","DCREASCD","large_string","string","Reason for Discontinuation","Reason for Discontinuation","",TRUE,TRUE,FALSE
+"ADSL","MMSETOT","double","double","MMSE Total","MMSE Total","",TRUE,TRUE,FALSE
+"ADTTE","STUDYID","large_string","string","Study Identifier","Study Identifier","",TRUE,TRUE,FALSE
+"ADTTE","SITEID","large_string","string","Study Site Identifier","Study Site Identifier","",TRUE,TRUE,FALSE
+"ADTTE","USUBJID","large_string","string","Unique Subject Identifier","Unique Subject Identifier","",TRUE,TRUE,FALSE
+"ADTTE","AGE","double","double","Age","Age","",TRUE,TRUE,FALSE
+"ADTTE","AGEGR1","large_string","string","Pooled Age Group 1","Pooled Age Group 1","",TRUE,TRUE,FALSE
+"ADTTE","AGEGR1N","double","double","Pooled Age Group 1 (N)","Pooled Age Group 1 (N)","",TRUE,TRUE,FALSE
+"ADTTE","RACE","large_string","string","Race","Race","",TRUE,TRUE,FALSE
+"ADTTE","RACEN","double","double","Race (N)","Race (N)","",TRUE,TRUE,FALSE
+"ADTTE","SEX","large_string","string","Sex","Sex","",TRUE,TRUE,FALSE
+"ADTTE","TRTSDT","date32[day]","date32[day]","Date of First Exposure to Treatment","Date of First Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADTTE","TRTEDT","date32[day]","date32[day]","Date of Last Exposure to Treatment","Date of Last Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADTTE","TRTDUR","double","double","Duration of treatment (days)","Duration of treatment (days)","",TRUE,TRUE,FALSE
+"ADTTE","TRTP","large_string","string","Planned Treatment","Planned Treatment","",TRUE,TRUE,FALSE
+"ADTTE","TRTA","large_string","string","Actual Treatment","Actual Treatment","",TRUE,TRUE,FALSE
+"ADTTE","TRTAN","double","double","Actual Treatment (N)","Actual Treatment (N)","",TRUE,TRUE,FALSE
+"ADTTE","PARAM","large_string","string","Parameter Description","Parameter Description","",TRUE,TRUE,FALSE
+"ADTTE","PARAMCD","large_string","string","Parameter Code","Parameter Code","",TRUE,TRUE,FALSE
+"ADTTE","AVAL","double","double","Analysis Value","Analysis Value","",TRUE,TRUE,FALSE
+"ADTTE","STARTDT","date32[day]","date32[day]","Time to Event Origin Date for Subject","Time to Event Origin Date for Subject","",TRUE,TRUE,FALSE
+"ADTTE","ADT","date32[day]","date32[day]","Analysis Date","Analysis Date","",TRUE,TRUE,FALSE
+"ADTTE","CNSR","double","double","Censor","Censor","",TRUE,TRUE,FALSE
+"ADTTE","EVNTDESC","large_string","string","Event or Censoring Description","Event or Censoring Description","",TRUE,TRUE,FALSE
+"ADTTE","SRCDOM","large_string","string","Source Domain","Source Domain","",TRUE,TRUE,FALSE
+"ADTTE","SRCVAR","large_string","string","Source Variable","Source Variable","",TRUE,TRUE,FALSE
+"ADTTE","SRCSEQ","double","double","Source Sequence Number","Source Sequence Number","",TRUE,TRUE,FALSE
+"ADTTE","SAFFL","large_string","string","Safety Population Flag","Safety Population Flag","",TRUE,TRUE,FALSE
+"ADVS","STUDYID","large_string","string","Study Identifier","Study Identifier","",TRUE,TRUE,FALSE
+"ADVS","SITEID","large_string","string","Study Site Identifier","Study Site Identifier","",TRUE,TRUE,FALSE
+"ADVS","USUBJID","large_string","string","Unique Subject Identifier","Unique Subject Identifier","",TRUE,TRUE,FALSE
+"ADVS","AGE","double","double","Age","Age","",TRUE,TRUE,FALSE
+"ADVS","AGEGR1","large_string","string","Pooled Age Group 1","Pooled Age Group 1","",TRUE,TRUE,FALSE
+"ADVS","AGEGR1N","double","double","Pooled Age Group 1 (N)","Pooled Age Group 1 (N)","",TRUE,TRUE,FALSE
+"ADVS","RACE","large_string","string","Race","Race","",TRUE,TRUE,FALSE
+"ADVS","RACEN","double","double","Race (N)","Race (N)","",TRUE,TRUE,FALSE
+"ADVS","SEX","large_string","string","Sex","Sex","",TRUE,TRUE,FALSE
+"ADVS","SAFFL","large_string","string","Safety Population Flag","Safety Population Flag","",TRUE,TRUE,FALSE
+"ADVS","TRTSDT","date32[day]","date32[day]","Date of First Exposure to Treatment","Date of First Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADVS","TRTEDT","date32[day]","date32[day]","Date of Last Exposure to Treatment","Date of Last Exposure to Treatment","",TRUE,TRUE,FALSE
+"ADVS","TRTP","large_string","string","Planned Treatment","Planned Treatment","",TRUE,TRUE,FALSE
+"ADVS","TRTPN","double","double","Planned Treatment (N)","Planned Treatment (N)","",TRUE,TRUE,FALSE
+"ADVS","TRTA","large_string","string","Actual Treatment","Actual Treatment","",TRUE,TRUE,FALSE
+"ADVS","TRTAN","double","double","Actual Treatment (N)","Actual Treatment (N)","",TRUE,TRUE,FALSE
+"ADVS","PARAMCD","large_string","string","Parameter Code","Parameter Code","",TRUE,TRUE,FALSE
+"ADVS","PARAM","large_string","string","Parameter","Parameter","",TRUE,TRUE,FALSE
+"ADVS","PARAMN","double","double","Parameter Number","Parameter Number","",TRUE,TRUE,FALSE
+"ADVS","ADT","date32[day]","date32[day]","Analysis Date","Analysis Date","",TRUE,TRUE,FALSE
+"ADVS","ADY","double","double","Analysis Relative Day","Analysis Relative Day","",TRUE,TRUE,FALSE
+"ADVS","ATPTN","double","double","Analysis Timepoint (N)","Analysis Timepoint (N)","",TRUE,TRUE,FALSE
+"ADVS","ATPT","large_string","string","Analysis Timepoint","Analysis Timepoint","",TRUE,TRUE,FALSE
+"ADVS","AVISIT","large_string","string","Analysis Visit","Analysis Visit","",TRUE,TRUE,FALSE
+"ADVS","AVISITN","double","double","Analysis Visit (N)","Analysis Visit (N)","",TRUE,TRUE,FALSE
+"ADVS","AVAL","double","double","Analysis Value","Analysis Value","",TRUE,TRUE,FALSE
+"ADVS","BASE","double","double","Baseline Value","Baseline Value","",TRUE,TRUE,FALSE
+"ADVS","CHG","double","double","Change from Baseline","Change from Baseline","",TRUE,TRUE,FALSE
+"ADVS","PCHG","double","double","Percent Change from Baseline","Percent Change from Baseline","",TRUE,TRUE,FALSE
+"ADVS","VISITNUM","double","double","Visit Number","Visit Number","",TRUE,TRUE,FALSE
+"ADVS","VISIT","large_string","string","Visit Name","Visit Name","",TRUE,TRUE,FALSE
+"ADVS","VSSEQ","double","double","Sequence Number","Sequence Number","",TRUE,TRUE,FALSE
+"ADVS","ANL01FL","large_string","string","Analysis Record Flag 01","Analysis Record Flag 01","",TRUE,TRUE,FALSE
+"ADVS","ABLFL","large_string","string","Baseline Record Flag","Baseline Record Flag","",TRUE,TRUE,FALSE

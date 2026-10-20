@@ -31,11 +31,13 @@ input:
     empty_string: present
   ADSL:
     path: ../../data/adam/adsl-yamaa.parquet
+    schema: adsl.yaml
     empty_string: present
 
 base: QS
 
 output:
+  report: ../../log/yamaa-adqsnipx-report.csv
   path: ../../data/adam/adqsnipx-yamaa.parquet
   columns: [STUDYID, SITEID, SITEGR1, USUBJID, TRTSDT, TRTEDT, TRTP, TRTPN,
     AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX, ITTFL, EFFFL, COMP24FL,
@@ -66,7 +68,7 @@ intermediates:
     filter: "_ABLFL = 'Y'"
     order_by: [QSSEQ]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: W3_LKP
     dataset: SELF
@@ -74,7 +76,7 @@ intermediates:
     filter: "QSTESTCD = 'NPTOT' AND _IS_SEL = 'Y' AND _WINDOW = 3"
     order_by: [QSSEQ]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: W4_LKP
     dataset: SELF
@@ -82,7 +84,7 @@ intermediates:
     filter: "QSTESTCD = 'NPTOT' AND _IS_SEL = 'Y' AND _WINDOW = 4"
     order_by: [QSSEQ]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: W5_LKP
     dataset: SELF
@@ -90,7 +92,7 @@ intermediates:
     filter: "QSTESTCD = 'NPTOT' AND _IS_SEL = 'Y' AND _WINDOW = 5"
     order_by: [QSSEQ]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
   - id: W6_LKP
     dataset: SELF
@@ -98,7 +100,7 @@ intermediates:
     filter: "QSTESTCD = 'NPTOT' AND _IS_SEL = 'Y' AND _WINDOW = 6"
     order_by: [QSSEQ]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
 columns:
   - name: QSTESTCD
@@ -192,6 +194,26 @@ columns:
   - name: _CNT
     type: int
     label: "Working value: _CNT"
+
+  - name: _W3V
+    type: float
+    label: Selected week value with missing replaced by zero
+    derivation: {literal: 0}
+
+  - name: _W4V
+    type: float
+    label: Selected week value with missing replaced by zero
+    derivation: {literal: 0}
+
+  - name: _W5V
+    type: float
+    label: Selected week value with missing replaced by zero
+    derivation: {literal: 0}
+
+  - name: _W6V
+    type: float
+    label: Selected week value with missing replaced by zero
+    derivation: {literal: 0}
 
   - name: _MEAN
     type: float
@@ -352,7 +374,7 @@ columns:
             AND BASE_PARAM._AVAL IS NOT NULL AND BASE_PARAM._AVAL <> 0"
           then:
             compute:
-              expr: "(_AVAL - BASE_PARAM._AVAL) / BASE_PARAM._AVAL * 100"
+              expr: "100 * (_AVAL - BASE_PARAM._AVAL) / BASE_PARAM._AVAL"
 
   - name: ABLFL
     type: str
@@ -483,8 +505,8 @@ rows:
           method: dense
           window:
             group_by: [USUBJID, QSTESTCD, _WINDOW]
-            order_by: [{variable: _DIFF}, {variable: QS.QSDY},
-              {variable: QSSEQ}]
+            order_by: [_DIFF, QS.QSDY,
+              QSSEQ]
       _IS_SEL:
         case:
           - when: "_RANK = 1"
@@ -687,11 +709,11 @@ rows:
           - otherwise: {literal: ''}
       ADY: QS.QSDY
       ADT:
-        date_impute:
+        impute:
+          type: date
           source: QS.QSDTC
           month: 1
           day: 1
-          missing: null
       VISIT: QS.VISIT
       VISITNUM: QS.VISITNUM
       PARAMCD: QS.QSTESTCD
@@ -775,8 +797,7 @@ rows:
       _B_QSDY: {literal: null}
       _B_DTSTR: {literal: null}
       USUBJID:
-        aggregate:
-          expr: "MIN(QS.USUBJID)"
+        aggregate: "MIN(QS.USUBJID)"
       QSTESTCD: {literal: 'NPTOT'}
       _W: {literal: null}
       _AVISIT: {literal: '        Baseline'}
@@ -789,15 +810,15 @@ rows:
       _ABLFL: {literal: 'Y'}
       _AWTDIFF:
         compute:
-          expr: "abs(1.0 - BASE_LKP._B_QSDY)"
+          expr: "abs(1.0 - BASE_LKP.ADY)"
       ANL01FL: {literal: 'Y'}
-      ADY: BASE_LKP._B_QSDY
+      ADY: BASE_LKP.ADY
       ADT:
-        date_impute:
-          source: BASE_LKP._B_DTSTR
+        impute:
+          type: date
+          source: BASE_LKP.ADT
           month: 1
           day: 1
-          missing: null
       VISIT: BASE_LKP.VISIT
       VISITNUM: BASE_LKP.VISITNUM
       PARAMCD: {literal: 'NPTOTMN'}
@@ -818,8 +839,7 @@ rows:
     derivations:
       STUDYID: ADSL_LKP.STUDYID
       USUBJID:
-        aggregate:
-          expr: "MIN(QS.USUBJID)"
+        aggregate: "MIN(QS.USUBJID)"
       QSTESTCD: {literal: 'NPTOT'}
       _WINDOW: {literal: null}
       _TARGET: {literal: null}
@@ -852,14 +872,32 @@ rows:
       _CNT:
         compute:
           expr: "_W3N + _W4N + _W5N + _W6N"
+      _W3V:
+        case:
+          - when: "W3_LKP._AVAL IS NULL"
+            then: {literal: 0}
+          - otherwise: W3_LKP._AVAL
+      _W4V:
+        case:
+          - when: "W4_LKP._AVAL IS NULL"
+            then: {literal: 0}
+          - otherwise: W4_LKP._AVAL
+      _W5V:
+        case:
+          - when: "W5_LKP._AVAL IS NULL"
+            then: {literal: 0}
+          - otherwise: W5_LKP._AVAL
+      _W6V:
+        case:
+          - when: "W6_LKP._AVAL IS NULL"
+            then: {literal: 0}
+          - otherwise: W6_LKP._AVAL
       _MEAN:
         case:
           - when: "_CNT >= 1"
             then:
               compute:
-                expr: "(coalesce(W3_LKP._AVAL, 0) + coalesce(W4_LKP._AVAL,
-                  0) + coalesce(W5_LKP._AVAL, 0) + coalesce(W6_LKP._AVAL,
-                  0)) / _CNT"
+                expr: "(_W3V + _W4V + _W5V + _W6V) / _CNT"
       _AVAL: _MEAN
       _ABLFL: {literal: ''}
       _AWTDIFF: {literal: 0.0}
@@ -880,3 +918,16 @@ rows:
       PARAMTYP: {literal: 'DERIVED'}
       DTYPE: {literal: 'AVERAGE'}
       QSSEQ: {literal: null}
+
+verifications:
+  - row_count:
+      id: nonempty-analysis
+      min: 1
+  - assert:
+      id: treatment-date-order
+      when: TRTSDT IS NOT NULL AND TRTEDT IS NOT NULL
+      require: TRTSDT <= TRTEDT
+  - assert:
+      id: efficacy-population-is-itt
+      when: EFFFL = 'Y'
+      require: ITTFL = 'Y'

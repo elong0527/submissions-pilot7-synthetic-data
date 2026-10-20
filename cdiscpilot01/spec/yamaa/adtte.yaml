@@ -4,13 +4,16 @@ keys: [STUDYID, USUBJID]
 input:
   ADSL:
     path: ../../data/adam/adsl-yamaa.parquet
+    schema: adsl.yaml
     empty_string: present
   ADAE:
     path: ../../data/adam/adae-yamaa.parquet
+    schema: adae.yaml
     empty_string: present
 base: ADSL
 
 output:
+  report: ../../log/yamaa-adtte-report.csv
   path: ../../data/adam/adtte-yamaa.parquet
   columns: [STUDYID, SITEID, USUBJID, AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX,
     TRTSDT, TRTEDT, TRTDUR, TRTP, TRTA, TRTAN, PARAM, PARAMCD, AVAL, STARTDT,
@@ -24,7 +27,7 @@ intermediates:
     filter: "ADAE.AOCC01FL = 'Y'"
     order_by: [ADAE.ASTDT, ADAE.AESEQ]
     keep: first
-    no_match: null
+    no_match: {literal: null}
 
 columns:
   - name: STUDYID
@@ -139,7 +142,8 @@ columns:
     type: float
     label: Analysis Value
     derivation:
-      date_diff:
+      diff:
+        type: date
         start: STARTDT
         end: ADT
         unit: day
@@ -195,3 +199,12 @@ rows:
   - id: all-subjects
     dataset: ADSL
     derivations: {}
+
+verifications:
+  - row_count:
+      id: nonempty-analysis
+      min: 1
+  - assert:
+      id: treatment-date-order
+      when: TRTSDT IS NOT NULL AND TRTEDT IS NOT NULL
+      require: TRTSDT <= TRTEDT

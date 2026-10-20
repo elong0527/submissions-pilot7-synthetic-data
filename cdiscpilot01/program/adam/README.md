@@ -1,61 +1,81 @@
-# Pilot 1 ADaM derivations
+# Pilot 1 ADaM derivations in R
 
-Each active ADaM output has one yamaa specification in `../../spec/yamaa/`.
-`python/run.py` runs the specs in dependency order and saves
-`../../data/adam/<dataset>-yamaa.parquet`. The other specs read the
-derived ADSL and, for ADLBHY, the derived ADLBC. Every ADaM variable
-is derived in a specification. `python/compare.py` checks all official
-columns and cells at an absolute numeric tolerance of 1e-10, and
-compares the YAML label declarations with the official labels.
+Run from the `cdiscpilot01` study root. Use R >= 4.4, Rust/Cargo >= 1.82 and
+a C toolchain. This assessment compiled the released source archive with
+R 4.5.3 and Rust/Cargo 1.99.1 on Debian 13; it did not install a Python yamaa
+package or execute the historical Python study runner.
 
-Install the requirements, then run from this directory:
+Download `yamaa_0.5.0.tar.gz` from the
+[0.5.0 release](https://github.com/elong0527/yamaa/releases/tag/yamaa-v0.5.0)
+or an approved mirror. In R, using a writable library:
 
-```bash
-python3 -m pip install -r python/requirements.txt
-python3 -m yamaa.style ../../spec/yamaa/*.yaml
-python3 python/run.py
-python3 python/compare.py
+```r
+install.packages("yamaa_0.5.0.tar.gz", repos = NULL, type = "source")
+install.packages(c("arrow", "yaml", "jsonlite"))
+library(yamaa)
+stopifnot(as.character(packageVersion("yamaa")) == "0.5.0")
 ```
 
-`python/compare.py` checks output shape, column order and types, and every
-cell against `../../data/adam/`. Numeric values must match within
-absolute tolerance `1e-10`; null and empty text differ. It compares the
-YAML label declarations with the official `yamaa:label` field metadata.
-Missing or mismatched outputs make it exit nonzero. The official
-ADQSNIPX file is named `adqsnpix.parquet`. The dependency order is
-ADSL, ADAE, ADTTE, ADVS, ADLBC, ADLBH, ADLBHY, ADQSNIPX.
+Configure `R_LIBS_USER` if needed so subsequent `Rscript --vanilla` sessions
+use the same library. Independent comparison was tested with arrow 25.0.0,
+yaml 2.3.12 and jsonlite 2.0.0; package versions are recorded in
+`log/yamaa-r-packages.csv`. Installing Arrow may need platform prerequisites.
+An attempt to use the available R 4.6.1 environment failed to provision its
+reader dependencies; the complete qualification used a fresh R 4.5.3 library.
 
-## Verified outputs
+```bash
+Rscript --vanilla program/adam/r/reproduce-labels.R
+Rscript --vanilla program/adam/r/qualify.R . > log/yamaa-qualification.log 2>&1
+Rscript --vanilla program/adam/r/check-comparator.R . > log/yamaa-comparator-checks.log 2>&1
+attempt=$(date -u +%Y%m%dT%H%M%SZ)
+Rscript --vanilla program/adam/r/run.R . > "log/yamaa-run-${attempt}.log" 2>&1
+Rscript --vanilla program/adam/r/compare.R . > "log/yamaa-compare-${attempt}.log" 2>&1
+```
 
-The following full comparisons passed with zero yamaa validation issues on
-yamaa `e6bca4ac` (2026-09-29):
+`run.R` is 25 lines. It calls only the installed R package for checking,
+generation and saving; `assessment.R` records attempts and archives previous
+candidates and assessment logs before clearing only the ten generated targets. By default the
+archive is the ignored repository-level `.cdiscpilot01-yamaa-attempts/` folder.
+Set `YAMAA_ARCHIVE_ROOT` to a controlled persistent location to override it.
+Archives retain the study layout. Current candidates remain in `data/adam/`.
+The runtime writes detailed native issue/report RDS files locally; these
+machine-readable diagnostics are ignored by git. Inspect them with `readRDS()`.
 
-| Dataset | Columns | Matching cells |
-| --- | ---: | ---: |
-| ADSL | 48/48 | 12,192/12,192 |
-| ADAE | 55/55 | 65,505/65,505 |
-| ADTTE | 26/26 | 6,604/6,604 |
-| ADVS | 34/34 | 1,092,726/1,092,726 |
-| ADLBC | 46/46 | 3,416,144/3,416,144 |
-| ADLBH | 46/46 | 2,296,872/2,296,872 |
-| ADLBHY | 43/43 | 428,022/428,022 |
-| ADQSNIPX | 41/41 | 1,276,740/1,276,740 |
+`project.yaml` links ADSL to its consumers, ADAE to ADTTE, and ADLBC to ADLBHY.
+Every ADaM value is derived in native YAML. R handles orchestration,
+measurement and independent comparison. The generator reads SDTM and its
+own generated dependencies; it never reads reference ADaM values.
 
-The ADLBC and ADLBH specifications explicitly exclude unscheduled records
-from the previous-value window. ADQSNIPX looks up baseline by subject and
-test code.
+The frozen scope is `log/yamaa-scope.csv`, including the two previously
+missing specifications ADQSADAS and ADQSCIBC. ADQSNPIX retains its upstream
+filename spelling `adqsnipx.yaml` / `adqsnipx-yamaa.parquet`; the reference
+filename is `adqsnpix.parquet`. This mapping is explicit in scope.
 
-The specifications follow yamaa's [specification style contract][style]:
-schema field order, blank-line layout, lines of at most 79 characters, and
-canonical literal and source expressions.
+The comparator reads every saved column/cell with R Arrow, aligns by reviewed
+unique keys, and checks required physical row and column order separately.
+It treats Arrow string and large_string as the same logical text type.
+Null and empty text differ. Exact numeric equality and differences within
+absolute tolerance `1e-10` are reported separately. Zero engine issues,
+a successful current attempt, current inputs/specifications, and no stale
+or unscoped generated files are required. A missing output keeps its full
+reference denominator and is blocked.
 
-[style]: https://github.com/elong0527/yamaa/blob/e6bca4ac6589f7b884c26604afe3a0c13af71ad3/rules/specification/style.md
+**Expected current exits:** generation exits 0; strict comparison exits 1.
+All 9,119,605 reference cells match exactly and all ten data structures/orders
+match. All 415 declared YAML labels match, but R 0.5.0 omits these labels in
+saved Parquet. Strict full matching therefore remains 0/10. The standalone
+`reproduce-labels.R` confirms this behavior on one invented record; it exits
+0 when the reported omission is reproduced. It must be revisited for a
+future package version. No post-processing repairs or hides this limitation.
 
-## Outputs awaiting a single specification
+`qualify.R` uses invented records to check questionnaire visit selection,
+equal-distance ties, boundaries, carry-forward scores/donor fields, missing
+scores, zero baseline and invalid dates. `check-comparator.R` uses disposable
+copies for positive/negative comparison controls, including a deliberately
+changed cell, duplicate key, missing/stale output and failed attempt. Those
+copies are never used as derivation inputs or copied back to study outputs.
+`reproduce.R . <previous-archived-study-root>` compares completed output
+snapshots byte for byte without hashing.
 
-ADQSADAS and ADQSCIBC are excluded from `run.py` and `compare.py`. Their old
-multi-stage YAML workarounds have been removed. The rank-to-forward-fill
-limitation previously cited for ADQSADAS was fixed in
-[yamaa#1148](https://github.com/elong0527/yamaa/issues/1148); a single spec
-still needs to be built and compared. The ADQSCIBC single-spec validation
-hang is tracked in [yamaa#1484](https://github.com/elong0527/yamaa/issues/1484).
+The [assessment report](../../log/yamaa-assessment-report.md) records source
+conflicts, evidence limits, time/cost availability and the human review gate.

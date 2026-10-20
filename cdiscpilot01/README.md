@@ -1,14 +1,21 @@
 # cdiscpilot01
 
-CDISC SDTM/ADaM Pilot Project (Study CDISC Pilot 01), staged for yamaa-based
-SDTM-to-ADaM derivation.
+Public CDISC SDTM/ADaM Pilot Project, assessed with the released **R yamaa
+0.5.0** package. See [the assessment report](log/yamaa-assessment-report.md)
+and [R execution instructions](program/adam/README.md).
 
-- Source: https://github.com/cdisc-org/sdtm-adam-pilot-project/tree/master/updated-pilot-submission-package/900172/m5/datasets/cdiscpilot01
-- `data/sdtm/`: the 22 SDTM tabulation datasets, converted from SAS transport
-  (.xpt) to parquet. Column labels are preserved in the arrow schema metadata.
-- `spec/define/`: the original SDTM and ADaM define.xml files.
-- `spec/yamaa/`: eight active yamaa derivation specifications (SDTM -> ADaM).
-- `program/adam/python/`: the runner, strict comparator, and requirements.
-- `data/adam/`: official ADaM reference datasets and ignored yamaa outputs.
+- `data/sdtm/`: 22 frozen SDTM Parquet inputs.
+- `data/adam/`: ten frozen reference ADaM files and ignored generated
+  `<dataset>-yamaa.parquet` candidates.
+- `spec/define/`: unchanged original SDTM and ADaM define.xml files.
+- `spec/yamaa/`: ten native derivation specifications and `project.yaml`.
+- `program/adam/r/`: R runner, independent comparator and synthetic checks.
+- `log/yamaa-*`: assessment reports, metrics, inventories and feedback drafts.
 
-All data files are parquet; the only exception is define.xml.
+The R dry run reproduces every reference data cell. Strict acceptance remains
+blocked by missing labels in Parquet saved by R yamaa 0.5.0. Reference equality
+also does not establish exhaustive derivation logic coverage: source conflicts
+and missing original programs require human review. The historical Python
+programs remain available, but are not used by this R assessment.
+
+Source: [CDISC pilot submission](https://github.com/cdisc-org/sdtm-adam-pilot-project/tree/667511d4b183871d74392ba691c935c38d431d39/updated-pilot-submission-package/900172/m5/datasets/cdiscpilot01).

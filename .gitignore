@@ -15,3 +15,16 @@ submission-pilot5/data/adam/*-yamaa.parquet
 # NOTE: core-report-*.xlsx is intentionally NOT ignored -- the CORE Validate
 # "deliver" job commits it (plus dataset_comment.md) via the core/reports PR.
 # Ignoring it here silently breaks that commit (git add skips ignored globs).
+
+# Local R assessment snapshots and native diagnostic tables.
+.cdiscpilot01-yamaa-attempts/
+cdiscpilot01/log/yamaa-*.rds
+# Verbose local attempt logs retain machine paths; publish curated evidence.
+cdiscpilot01/log/yamaa-probe*
+cdiscpilot01/log/yamaa-compare-*.log
+cdiscpilot01/log/yamaa-run.log
+cdiscpilot01/log/yamaa-inventory.log
+cdiscpilot01/log/yamaa-scope.log
+cdiscpilot01/log/yamaa-adapted-check.log
+cdiscpilot01/log/yamaa-session-info.txt
+cdiscpilot01/log/yamaa-run-*.log

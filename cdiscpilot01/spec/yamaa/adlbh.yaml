@@ -7,10 +7,12 @@ input:
     empty_string: present
   ADSL:
     path: ../../data/adam/adsl-yamaa.parquet
+    schema: adsl.yaml
     empty_string: present
 base: LB
 
 output:
+  report: ../../log/yamaa-adlbh-report.csv
   path: ../../data/adam/adlbh-yamaa.parquet
   columns: [STUDYID, SUBJID, USUBJID, TRTP, TRTPN, TRTA, TRTAN, TRTSDT, TRTEDT,
             AGE, AGEGR1, AGEGR1N, RACE, RACEN, SEX, COMP24FL, DSRAEFL, SAFFL,
@@ -36,7 +38,7 @@ intermediates:
     filter: "LB.LBCAT = 'HEMATOLOGY' AND LB.VISIT NOT IN ('AMBUL ECG REMOVAL',
       'BASELINE', 'RETRIEVAL') AND LB.VISIT NOT LIKE 'UNSCHEDULED%'"
     columns: [PREV_AVAL]
-    no_match: null
+    no_match: {literal: null}
     derivations:
       _AVISITN:
         case:
@@ -67,8 +69,8 @@ intermediates:
           offset: -1
           window:
             group_by: [LB.USUBJID, LB.LBTESTCD]
-            order_by: [{variable: _AVISITN}, {variable: LB.LBDTC},
-              {variable: LB.LBSEQ}]
+            order_by: [_AVISITN, LB.LBDTC,
+              LB.LBSEQ]
             filter: "LB.LBCAT = 'HEMATOLOGY' AND LB.VISIT NOT IN
               ('AMBUL ECG REMOVAL', 'BASELINE', 'RETRIEVAL')
               AND LB.VISIT NOT LIKE 'UNSCHEDULED%'"
@@ -203,11 +205,7 @@ columns:
       case:
         - when: "_IS_UNDER = 'Y'"
           then:
-            str_concat:
-              sources:
-                - {source: _PARAM_BASE}
-                - {literal: ' change from previous visit,
-                    relative to normal range'}
+            str_template: "{_PARAM_BASE} change from previous visit, relative to normal range"
         - otherwise: {literal: null}
 
   - name: _R2A1HI_R
@@ -355,8 +353,8 @@ columns:
         window:
           group_by: [USUBJID, PARAMCD]
           order_by: [{variable: _RANK_VAL, direction: desc},
-            {variable: _RANK_AVISITN}, {variable: _ADT_DATE},
-            {variable: LBSEQ}]
+            _RANK_AVISITN, _ADT_DATE,
+            LBSEQ]
           filter: "_RANK_AVISITN >= 2 AND _RANK_AVISITN <= 24"
 
   # Row-level
@@ -577,11 +575,12 @@ rows:
       A1HI: LB.LBSTNRHI
       _LBDTM_TXT: LB.LBDTC
       _LBDTM:
-        datetime_impute:
+        impute:
+          type: datetime
+          minimum_source_precision: day
           source: _LBDTM_TXT
           time: first
-          missing: null
-          invalid: null
+          invalid: {literal: null}
       _ADT_DATE:
         to_date:
           source: _LBDTM
@@ -639,7 +638,7 @@ rows:
       _PARAM_BASE:
         mapping:
           source: LB.LBTESTCD
-          unmapped: null
+          unmapped: {literal: null}
           dict:
             HGB: 'Hemoglobin (mmol/L)'
             HCT: 'Hematocrit'
@@ -658,11 +657,11 @@ rows:
             MICROCY: 'Microcytes'
             POIKILO: 'Poikilocytes'
             POLYCHR: 'Polychromasia'
-          missing: null
+          missing: {literal: null}
       _PARAMN_BASE:
         mapping:
           source: LB.LBTESTCD
-          unmapped: null
+          unmapped: {literal: null}
           dict:
             HGB: 1.0
             HCT: 2.0
@@ -688,11 +687,12 @@ rows:
             then: _AVAL_BASE
           - otherwise: {literal: null}
       _PNM_BASE:
-        previous_non_missing:
+        locf:
+          include_current: false
           source: _BASELINE_AVAL
           window:
             group_by: [USUBJID, PARAMCD]
-            order_by: [{variable: LBSEQ}]
+            order_by: [LBSEQ]
       _BASE:
         first_available:
           sources: [_BASELINE_AVAL, _PNM_BASE]
@@ -747,11 +747,12 @@ rows:
             then: _ANRIND_BASE
           - otherwise: {literal: null}
       _PNM_BNRIND:
-        previous_non_missing:
+        locf:
+          include_current: false
           source: _BASELINE_ANRIND
           window:
             group_by: [USUBJID, PARAMCD]
-            order_by: [{variable: LBSEQ}]
+            order_by: [LBSEQ]
       _BNRIND_VAL:
         first_available:
           sources: [_BASELINE_ANRIND, _PNM_BNRIND]
@@ -804,11 +805,12 @@ rows:
       _LBDTM_TXT:
         aggregate: "ONLY(LB.LBDTC)"
       _LBDTM:
-        datetime_impute:
+        impute:
+          type: datetime
+          minimum_source_precision: day
           source: _LBDTM_TXT
           time: first
-          missing: null
-          invalid: null
+          invalid: {literal: null}
       _ADT_DATE:
         to_date:
           source: _LBDTM
@@ -822,7 +824,7 @@ rows:
       _PARAM_BASE:
         mapping:
           source: LB.LBTESTCD
-          unmapped: null
+          unmapped: {literal: null}
           dict:
             HGB: 'Hemoglobin (mmol/L)'
             HCT: 'Hematocrit'
@@ -841,11 +843,11 @@ rows:
             MICROCY: 'Microcytes'
             POIKILO: 'Poikilocytes'
             POLYCHR: 'Polychromasia'
-          missing: null
+          missing: {literal: null}
       _PARAMN_BASE:
         mapping:
           source: LB.LBTESTCD
-          unmapped: null
+          unmapped: {literal: null}
           dict:
             HGB: 1.0
             HCT: 2.0
@@ -864,7 +866,7 @@ rows:
             MICROCY: 15.0
             POIKILO: 16.0
             POLYCHR: 17.0
-          missing: null
+          missing: {literal: null}
       _AVAL_BASE:
         aggregate: "ONLY(LB.LBSTRESN)"
       _BASELINE_AVAL:
@@ -873,11 +875,12 @@ rows:
             then: _AVAL_BASE
           - otherwise: {literal: null}
       _PNM_BASE:
-        previous_non_missing:
+        locf:
+          include_current: false
           source: _BASELINE_AVAL
           window:
             group_by: [USUBJID, PARAMCD]
-            order_by: [{variable: LBSEQ}]
+            order_by: [LBSEQ]
       _BASE:
         first_available:
           sources: [_BASELINE_AVAL, _PNM_BASE]
@@ -954,11 +957,12 @@ rows:
             then: _ANRIND_BASE
           - otherwise: {literal: null}
       _PNM_BNRIND:
-        previous_non_missing:
+        locf:
+          include_current: false
           source: _BASELINE_ANRIND
           window:
             group_by: [USUBJID, PARAMCD]
-            order_by: [{variable: LBSEQ}]
+            order_by: [LBSEQ]
       _BNRIND_VAL:
         first_available:
           sources: [_BASELINE_ANRIND, _PNM_BNRIND]
@@ -988,19 +992,17 @@ rows:
       A1HI: {literal: null}
       _LBDTM_TXT: LB.LBDTC
       _LBDTM:
-        datetime_impute:
+        impute:
+          type: datetime
+          minimum_source_precision: day
           source: _LBDTM_TXT
           time: first
-          missing: null
-          invalid: null
+          invalid: {literal: null}
       _ADT_DATE:
         to_date:
           source: _LBDTM
       PARAMCD:
-        str_concat:
-          sources:
-            - {literal: '_'}
-            - {source: LB.LBTESTCD}
+        str_template: "_{LB.LBTESTCD}"
       AVISIT:
         case:
           - when: "LB.VISIT = 'SCREENING 1'"
@@ -1051,7 +1053,7 @@ rows:
       _PARAM_BASE:
         mapping:
           source: LB.LBTESTCD
-          unmapped: null
+          unmapped: {literal: null}
           dict:
             HGB: 'Hemoglobin (mmol/L)'
             HCT: 'Hematocrit'
@@ -1070,11 +1072,11 @@ rows:
             MICROCY: 'Microcytes'
             POIKILO: 'Poikilocytes'
             POLYCHR: 'Polychromasia'
-          missing: null
+          missing: {literal: null}
       _PARAMN_BASE:
         mapping:
           source: LB.LBTESTCD
-          unmapped: null
+          unmapped: {literal: null}
           dict:
             HGB: 1.0
             HCT: 2.0
@@ -1180,11 +1182,12 @@ rows:
       _LBDTM_TXT:
         aggregate: "ONLY(LB.LBDTC)"
       _LBDTM:
-        datetime_impute:
+        impute:
+          type: datetime
+          minimum_source_precision: day
           source: _LBDTM_TXT
           time: first
-          missing: null
-          invalid: null
+          invalid: {literal: null}
       _ADT_DATE:
         to_date:
           source: _LBDTM
@@ -1193,17 +1196,14 @@ rows:
       _LBBLFL:
         aggregate: "ONLY(LB.LBBLFL)"
       PARAMCD:
-        str_concat:
-          sources:
-            - {literal: '_'}
-            - {source: _LBTESTCD}
+        str_template: "_{_LBTESTCD}"
       AVISIT: {literal: 'End of Treatment'}
       AVISITN: {literal: 99.0}
       ABLFL: {literal: ''}
       _PARAM_BASE:
         mapping:
           source: LB.LBTESTCD
-          unmapped: null
+          unmapped: {literal: null}
           dict:
             HGB: 'Hemoglobin (mmol/L)'
             HCT: 'Hematocrit'
@@ -1222,11 +1222,11 @@ rows:
             MICROCY: 'Microcytes'
             POIKILO: 'Poikilocytes'
             POLYCHR: 'Polychromasia'
-          missing: null
+          missing: {literal: null}
       _PARAMN_BASE:
         mapping:
           source: LB.LBTESTCD
-          unmapped: null
+          unmapped: {literal: null}
           dict:
             HGB: 1.0
             HCT: 2.0
@@ -1245,7 +1245,7 @@ rows:
             MICROCY: 15.0
             POIKILO: 16.0
             POLYCHR: 17.0
-          missing: null
+          missing: {literal: null}
       _AVAL_BASE:
         aggregate: "ONLY(LB.LBSTRESN)"
       _BASE: {literal: null}
@@ -1322,3 +1322,12 @@ rows:
       _PNM_BNRIND: {literal: null}
       _BNRIND_VAL: {literal: null}
       _ANRIND_BASE: {literal: null}
+
+verifications:
+  - row_count:
+      id: nonempty-analysis
+      min: 1
+  - assert:
+      id: treatment-date-order
+      when: TRTSDT IS NOT NULL AND TRTEDT IS NOT NULL
+      require: TRTSDT <= TRTEDT

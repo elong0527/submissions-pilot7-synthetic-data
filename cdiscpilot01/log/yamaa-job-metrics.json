@@ -1,0 +1,31 @@
+{
+  "status": "ready for human review; strict acceptance failed",
+  "started_utc": "2026-10-20T19:57:07Z",
+  "report_frozen_utc": "2026-10-20T20:34:38Z",
+  "wall_seconds": 2251.34399175644,
+  "recorded_project_attempts": 12,
+  "recorded_project_failures": 2,
+  "final_generation_seconds": 22.8338,
+  "final_comparison_seconds": 10.6363,
+  "rust_source_compilation_seconds": 244,
+  "installation_wall_seconds": null,
+  "dependency_setup_wall_seconds": null,
+  "programmer_hours": null,
+  "reviewer_hours": null,
+  "ai_tokens": {
+    "input": null,
+    "cached_input": null,
+    "output": null,
+    "reason": "Per-job provider usage telemetry is not exposed to this session."
+  },
+  "cost": {
+    "currency": "USD",
+    "ai_actual": null,
+    "ai_estimated": null,
+    "compute": null,
+    "license": null,
+    "total": null,
+    "reason": "No billing, rate, compute-charge or license meter is available. Unavailable is not zero."
+  },
+  "phase_limits": "Total wall time includes setup, investigation, specification authoring, retries, qualification, reporting and recipe checks. Only measured phase durations are reported; concurrent durations do not sum to wall time. Human review is pending."
+}

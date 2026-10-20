@@ -1,0 +1,565 @@
+# CIBIC: native R yamaa 0.5.0 specification.
+# Evidence: public SAP Appendix 9 and Pilot 7 historical specs at 086abc2.
+# Observed rows retain their score. Empty windows retain the latest raw
+# donor fields and carry the latest selected visit score.
+# See log/yamaa-source-discrepancies.csv for conflicts requiring review.
+
+schema_version: '1.0'
+domain: ADQSCIBC
+keys:
+  - STUDYID
+  - USUBJID
+  - AVISITN
+  - QSSEQ
+
+input:
+  QS:
+    path: ../../data/sdtm/qs.parquet
+    empty_string: present
+  ADSL:
+    path: ../../data/adam/adsl-yamaa.parquet
+    schema: adsl.yaml
+    empty_string: present
+
+output:
+  path: ../../data/adam/adqscibc-yamaa.parquet
+  columns:
+    - STUDYID
+    - SITEID
+    - SITEGR1
+    - USUBJID
+    - TRTSDT
+    - TRTEDT
+    - TRTP
+    - TRTPN
+    - AGE
+    - AGEGR1
+    - AGEGR1N
+    - RACE
+    - RACEN
+    - SEX
+    - ITTFL
+    - EFFFL
+    - COMP24FL
+    - AVISIT
+    - AVISITN
+    - VISIT
+    - VISITNUM
+    - ADY
+    - ADT
+    - PARAMCD
+    - PARAM
+    - PARAMN
+    - AVAL
+    - ANL01FL
+    - DTYPE
+    - AWRANGE
+    - AWTARGET
+    - AWTDIFF
+    - AWLO
+    - AWHI
+    - AWU
+    - QSSEQ
+  report: ../../log/yamaa-adqscibc-report.csv
+  order_by:
+    - USUBJID
+    - AVISITN
+    - QSSEQ
+
+intermediates:
+
+  - id: ADSL_LKP
+    dataset: ADSL
+    key:
+      - USUBJID
+
+  - id: HAS8
+    dataset: SELF
+    key:
+      - USUBJID
+    filter: _NAT = 'Y' AND PARAMCD = 'CIBICVAL' AND AVISITN = 8
+    order_by:
+      - QSSEQ
+    keep: first
+    no_match: {literal: null}
+
+  - id: REC8
+    dataset: SELF
+    key:
+      - USUBJID
+    filter: _NAT = 'Y' AND PARAMCD = 'CIBICVAL' AND AVISITN < 8
+    order_by:
+      - variable: ADY
+        direction: desc
+      - variable: QSSEQ
+        direction: desc
+    keep: first
+    no_match: {literal: null}
+
+  - id: SEL8
+    dataset: SELF
+    key:
+      - USUBJID
+    filter: _NAT = 'Y' AND PARAMCD = 'CIBICVAL' AND AVISITN < 8 AND ANL01FL = 'Y'
+    order_by:
+      - variable: AVISITN
+        direction: desc
+      - variable: ADY
+        direction: desc
+      - variable: QSSEQ
+        direction: desc
+    keep: first
+    no_match: {literal: null}
+
+  - id: HAS16
+    dataset: SELF
+    key:
+      - USUBJID
+    filter: _NAT = 'Y' AND PARAMCD = 'CIBICVAL' AND AVISITN = 16
+    order_by:
+      - QSSEQ
+    keep: first
+    no_match: {literal: null}
+
+  - id: REC16
+    dataset: SELF
+    key:
+      - USUBJID
+    filter: _NAT = 'Y' AND PARAMCD = 'CIBICVAL' AND AVISITN < 16
+    order_by:
+      - variable: ADY
+        direction: desc
+      - variable: QSSEQ
+        direction: desc
+    keep: first
+    no_match: {literal: null}
+
+  - id: SEL16
+    dataset: SELF
+    key:
+      - USUBJID
+    filter: _NAT = 'Y' AND PARAMCD = 'CIBICVAL' AND AVISITN < 16 AND ANL01FL = 'Y'
+    order_by:
+      - variable: AVISITN
+        direction: desc
+      - variable: ADY
+        direction: desc
+      - variable: QSSEQ
+        direction: desc
+    keep: first
+    no_match: {literal: null}
+
+  - id: HAS24
+    dataset: SELF
+    key:
+      - USUBJID
+    filter: _NAT = 'Y' AND PARAMCD = 'CIBICVAL' AND AVISITN = 24
+    order_by:
+      - QSSEQ
+    keep: first
+    no_match: {literal: null}
+
+  - id: REC24
+    dataset: SELF
+    key:
+      - USUBJID
+    filter: _NAT = 'Y' AND PARAMCD = 'CIBICVAL' AND AVISITN < 24
+    order_by:
+      - variable: ADY
+        direction: desc
+      - variable: QSSEQ
+        direction: desc
+    keep: first
+    no_match: {literal: null}
+
+  - id: SEL24
+    dataset: SELF
+    key:
+      - USUBJID
+    filter: _NAT = 'Y' AND PARAMCD = 'CIBICVAL' AND AVISITN < 24 AND ANL01FL = 'Y'
+    order_by:
+      - variable: AVISITN
+        direction: desc
+      - variable: ADY
+        direction: desc
+      - variable: QSSEQ
+        direction: desc
+    keep: first
+    no_match: {literal: null}
+
+columns:
+
+  - name: USUBJID
+    type: str
+    label: Unique Subject Identifier
+
+  - name: PARAMCD
+    type: str
+    label: Parameter Code
+
+  - name: ADY
+    type: float
+    label: Analysis Relative Day
+
+  - name: QSSEQ
+    type: float
+    label: Sequence Number
+
+  - name: AVISITN
+    type: float
+    label: Analysis Visit (N)
+
+  - name: AWTARGET
+    type: float
+    label: Analysis Window Target
+    derivation:
+      case:
+        - when: AVISITN = 0
+          then: {literal: 1.0}
+        - when: AVISITN = 8
+          then: {literal: 56.0}
+        - when: AVISITN = 16
+          then: {literal: 112.0}
+        - otherwise: {literal: 168.0}
+
+  - name: AWTDIFF
+    type: float
+    label: Analysis Window Diff from Target
+    derivation:
+      compute:
+        expr: abs(AWTARGET - ADY)
+
+  - name: _NAT
+    type: str
+    label: Original SDTM observation marker
+
+  - name: _OBS_VALUE
+    type: float
+    label: Observed questionnaire value
+
+  - name: _RANK
+    type: int
+    label: Closest observation within the analysis window
+
+  - name: _SEL_VALUE
+    type: float
+    label: Selected observed value for carry forward
+
+  - name: _CARRIED
+    type: float
+    label: Previous selected observation value
+
+  - name: AVAL
+    type: float
+    label: Analysis Value
+
+  - name: ANL01FL
+    type: str
+    label: Analysis Record Flag 01
+
+  - name: DTYPE
+    type: str
+    label: Derivation Type
+
+  - name: VISIT
+    type: str
+    label: Visit Name
+
+  - name: VISITNUM
+    type: float
+    label: Visit Number
+
+  - name: ADT
+    type: date
+    label: Analysis Date
+
+  - name: STUDYID
+    type: str
+    label: Study Identifier
+    derivation: ADSL_LKP.STUDYID
+
+  - name: SITEID
+    type: str
+    label: Study Site Identifier
+    derivation: ADSL_LKP.SITEID
+
+  - name: SITEGR1
+    type: str
+    label: Pooled Site Group 1
+    derivation: ADSL_LKP.SITEGR1
+
+  - name: TRTSDT
+    type: date
+    label: Date of First Exposure to Treatment
+    derivation: ADSL_LKP.TRTSDT
+
+  - name: TRTEDT
+    type: date
+    label: Date of Last Exposure to Treatment
+    derivation: ADSL_LKP.TRTEDT
+
+  - name: TRTP
+    type: str
+    label: Planned Treatment
+    derivation: ADSL_LKP.TRT01P
+
+  - name: TRTPN
+    type: float
+    label: Planned Treatment (N)
+    derivation: ADSL_LKP.TRT01PN
+
+  - name: AGE
+    type: float
+    label: Age
+    derivation: ADSL_LKP.AGE
+
+  - name: AGEGR1
+    type: str
+    label: Pooled Age Group 1
+    derivation: ADSL_LKP.AGEGR1
+
+  - name: AGEGR1N
+    type: float
+    label: Pooled Age Group 1 (N)
+    derivation: ADSL_LKP.AGEGR1N
+
+  - name: RACE
+    type: str
+    label: Race
+    derivation: ADSL_LKP.RACE
+
+  - name: RACEN
+    type: float
+    label: Race (N)
+    derivation: ADSL_LKP.RACEN
+
+  - name: SEX
+    type: str
+    label: Sex
+    derivation: ADSL_LKP.SEX
+
+  - name: ITTFL
+    type: str
+    label: Intent-to-Treat Population Flag
+    derivation: ADSL_LKP.ITTFL
+
+  - name: EFFFL
+    type: str
+    label: Efficacy Population Flag
+    derivation: ADSL_LKP.EFFFL
+
+  - name: COMP24FL
+    type: str
+    label: Completers of Week 24 Population Flag
+    derivation: ADSL_LKP.COMP24FL
+
+  - name: AVISIT
+    type: str
+    label: Analysis Visit
+    derivation:
+      case:
+        - when: AVISITN = 0
+          then: {literal: Baseline}
+        - when: AVISITN = 8
+          then: {literal: Week 8}
+        - when: AVISITN = 16
+          then: {literal: Week 16}
+        - otherwise: {literal: Week 24}
+
+  - name: PARAM
+    type: str
+    label: Parameter
+    derivation: {literal: CIBIC Score}
+
+  - name: PARAMN
+    type: float
+    label: Parameter (N)
+    derivation: {literal: 1.0}
+
+  - name: AWRANGE
+    type: str
+    label: Analysis Window Valid Relative Range
+    derivation:
+      case:
+        - when: AVISITN = 0
+          then: {literal: <=1}
+        - when: AVISITN = 8
+          then: {literal: 2-84}
+        - when: AVISITN = 16
+          then: {literal: 85-140}
+        - otherwise: {literal: '>140'}
+
+  - name: AWLO
+    type: float
+    label: Analysis Window Beginning Timepoint
+    derivation:
+      case:
+        - when: AVISITN = 0
+          then: {literal: null}
+        - when: AVISITN = 8
+          then: {literal: 2.0}
+        - when: AVISITN = 16
+          then: {literal: 85.0}
+        - otherwise: {literal: 141.0}
+
+  - name: AWHI
+    type: float
+    label: Analysis Window Ending Timepoint
+    derivation:
+      case:
+        - when: AVISITN = 0
+          then: {literal: 1.0}
+        - when: AVISITN = 8
+          then: {literal: 84.0}
+        - when: AVISITN = 16
+          then: {literal: 140.0}
+        - otherwise: {literal: null}
+
+  - name: AWU
+    type: str
+    label: Analysis Window Unit
+    derivation: {literal: DAYS}
+
+rows:
+
+  - id: observed
+    dataset: QS
+    filter: QS.QSTESTCD = 'CIBIC' AND QS.QSDY >= 2
+    derivations:
+      USUBJID: QS.USUBJID
+      PARAMCD: {literal: CIBICVAL}
+      ADY: QS.QSDY
+      QSSEQ: QS.QSSEQ
+      AVISITN:
+        case:
+          - when: QS.QSDY <= 1
+            then: {literal: 0.0}
+          - when: QS.QSDY <= 84
+            then: {literal: 8.0}
+          - when: QS.QSDY <= 140
+            then: {literal: 16.0}
+          - otherwise: {literal: 24.0}
+      _NAT: {literal: 'Y'}
+      _OBS_VALUE: QS.QSSTRESN
+      _RANK:
+        rank:
+          method: dense
+          window:
+            group_by:
+              - USUBJID
+              - PARAMCD
+              - AVISITN
+            order_by:
+              - AWTDIFF
+              - ADY
+              - QSSEQ
+      _SEL_VALUE:
+        case:
+          - when: _RANK = 1
+            then: _OBS_VALUE
+          - otherwise: {literal: null}
+      _CARRIED:
+        locf:
+          source: _SEL_VALUE
+          include_current: false
+          window:
+            group_by:
+              - USUBJID
+              - PARAMCD
+            order_by:
+              - ADY
+              - QSSEQ
+      AVAL: _OBS_VALUE
+      ANL01FL:
+        case:
+          - when: _RANK = 1
+            then: {literal: 'Y'}
+          - otherwise: {literal: ''}
+      DTYPE: {literal: ''}
+      VISIT: QS.VISIT
+      VISITNUM: QS.VISITNUM
+      ADT:
+        impute:
+          type: date
+          source: QS.QSDTC
+          month: 1
+          day: 1
+          invalid: {literal: null}
+
+  - id: missing-week-8
+    dataset: ADSL
+    filter: HAS8.QSSEQ IS NULL AND REC8.QSSEQ IS NOT NULL AND SEL8.AVAL IS NOT NULL
+    derivations:
+      USUBJID: ADSL.USUBJID
+      PARAMCD: {literal: CIBICVAL}
+      ADY: REC8.ADY
+      QSSEQ: REC8.QSSEQ
+      AVISITN: {literal: 8.0}
+      _NAT: {literal: 'N'}
+      _OBS_VALUE: {literal: null}
+      _RANK: {literal: null}
+      _SEL_VALUE: {literal: null}
+      _CARRIED: {literal: null}
+      AVAL: SEL8.AVAL
+      ANL01FL: {literal: 'Y'}
+      DTYPE: {literal: LOCF}
+      VISIT: REC8.VISIT
+      VISITNUM: REC8.VISITNUM
+      ADT: REC8.ADT
+
+  - id: missing-week-16
+    dataset: ADSL
+    filter: HAS16.QSSEQ IS NULL AND REC16.QSSEQ IS NOT NULL AND SEL16.AVAL IS NOT
+      NULL
+    derivations:
+      USUBJID: ADSL.USUBJID
+      PARAMCD: {literal: CIBICVAL}
+      ADY: REC16.ADY
+      QSSEQ: REC16.QSSEQ
+      AVISITN: {literal: 16.0}
+      _NAT: {literal: 'N'}
+      _OBS_VALUE: {literal: null}
+      _RANK: {literal: null}
+      _SEL_VALUE: {literal: null}
+      _CARRIED: {literal: null}
+      AVAL: SEL16.AVAL
+      ANL01FL: {literal: 'Y'}
+      DTYPE: {literal: LOCF}
+      VISIT: REC16.VISIT
+      VISITNUM: REC16.VISITNUM
+      ADT: REC16.ADT
+
+  - id: missing-week-24
+    dataset: ADSL
+    filter: HAS24.QSSEQ IS NULL AND REC24.QSSEQ IS NOT NULL AND SEL24.AVAL IS NOT
+      NULL
+    derivations:
+      USUBJID: ADSL.USUBJID
+      PARAMCD: {literal: CIBICVAL}
+      ADY: REC24.ADY
+      QSSEQ: REC24.QSSEQ
+      AVISITN: {literal: 24.0}
+      _NAT: {literal: 'N'}
+      _OBS_VALUE: {literal: null}
+      _RANK: {literal: null}
+      _SEL_VALUE: {literal: null}
+      _CARRIED: {literal: null}
+      AVAL: SEL24.AVAL
+      ANL01FL: {literal: 'Y'}
+      DTYPE: {literal: LOCF}
+      VISIT: REC24.VISIT
+      VISITNUM: REC24.VISITNUM
+      ADT: REC24.ADT
+
+verifications:
+  - row_count:
+      id: nonempty-analysis
+      min: 1
+  - assert:
+      id: treatment-date-order
+      when: TRTSDT IS NOT NULL AND TRTEDT IS NOT NULL
+      require: TRTSDT <= TRTEDT
+  - assert:
+      id: efficacy-population-is-itt
+      when: EFFFL = 'Y'
+      require: ITTFL = 'Y'
