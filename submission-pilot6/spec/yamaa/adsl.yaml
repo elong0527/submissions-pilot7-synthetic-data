@@ -1,0 +1,80 @@
+yamaa: "1.0"
+type: spec
+model: ADaM
+parent: ../../../submission-pilot3/spec/yamaa/adsl.yaml
+domain: ADSL
+input:
+  DM: ../../data/sdtm/dm.parquet
+  DS: ../../data/sdtm/ds.parquet
+  EX: ../../data/sdtm/ex.parquet
+  QS: ../../data/sdtm/qs.parquet
+  SV: ../../data/sdtm/sv.parquet
+  VS: ../../data/sdtm/vs.parquet
+  SC: ../../data/sdtm/sc.parquet
+  MH: ../../data/sdtm/mh.parquet
+
+output:
+  path: ../../data/adam/adsl-yamaa.parquet
+  columns:
+    - STUDYID
+    - USUBJID
+    - SUBJID
+    - SITEID
+    - SITEGR1
+    - ARM
+    - TRT01P
+    - TRT01PN
+    - TRT01A
+    - TRT01AN
+    - TRTSDT
+    - TRTEDT
+    - TRTDURD
+    - AVGDD
+    - CUMDOSE
+    - AGE
+    - AGEGR1
+    - AGEGR1N
+    - AGEU
+    - RACE
+    - RACEN
+    - SEX
+    - ETHNIC
+    - SAFFL
+    - ITTFL
+    - EFFFL
+    - COMPLFL
+    - COMP8FL
+    - COMP16FL
+    - COMP24FL
+    - DISCONFL
+    - DSRAEFL
+    - DTHFL
+    - BMIBL
+    - BMIBLGR1
+    - HEIGHTBL
+    - WEIGHTBL
+    - EDUCLVL
+    - DISONSDT
+    - DURDIS
+    - DURDSGR1
+    - VISIT1DT
+    - RFSTDTC
+    - RFENDTC
+    - VISNUMEN
+    - RFENDT
+    - DCDECOD
+    - EOSSTT
+    - DCSREAS
+    - MMSETOT
+  order_by:
+    - USUBJID
+
+columns:
+  - name: COMPLFL
+    type: str
+    label: Completers Population Flag
+    derivation:
+      case:
+        - when: EOSSTT = 'COMPLETED'
+          then: "'Y'"
+        - otherwise: "'N'"
